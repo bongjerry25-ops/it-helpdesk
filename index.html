@@ -130,28 +130,26 @@
 </div>
 
 <script>
-    // ចាប់ផ្តើមទាញយកប្រព័ន្ធ Telegram WebApp SDK
+    // ១. ចាប់ផ្តើមទាញយកប្រព័ន្ធ Telegram WebApp SDK
     const tg = window.Telegram.WebApp;
-    tg.ready(); // ជូនដំណឹងទៅ Telegram ថាទំព័រលោតចប់ហើយ
-    tg.expand(); // ពង្រីកអេក្រង់ WebApp ឱ្យធំពេញល្មមស្អាត
+    tg.ready();
+    tg.expand();
 
-    // ចាប់យកព្រឹត្តិការណ៍នៅពេលចុចប៊ូតុង Submit លើ Form
+    // ២. ចាប់យកព្រឹត្តិការណ៍នៅពេល User ចុចប៊ូតុង Submit លើ Form
     document.getElementById("ticketForm").addEventListener("submit", function(e) {
-        e.preventDefault(); // ការពារកុំឱ្យវា Refresh ទំព័រ Website
+        e.preventDefault(); // ការពារកុំឱ្យវា Refresh ទំព័រ
 
-        // ប្រមូលផ្តុំទិន្នន័យពី Form ទៅជាវត្ថុ (Object)
+        // ៣. ចាប់យកទិន្នន័យពីគ្រប់ប្រអប់ (ត្រូវប្រាកដថា ID ទាំងនេះត្រូវគ្នាជាមួយ ID នៃ input/select របស់បង)
         const formData = {
-            name: document.getElementById("name").value,
-            department: document.getElementById("department").value,
-            issue_type: document.getElementById("issue_type").value,
-            description: document.getElementById("description").value
+            issue_type: document.getElementById("issue_type") ? document.getElementById("issue_type").value : "Software Issue",
+            category: document.getElementById("software_category") ? document.getElementById("software_category").value : "Microsoft Word",
+            description: document.getElementById("description") ? document.getElementById("description").value : ""
         };
 
-        // 🎯 ផ្ញើទិន្នន័យជា JSON ត្រឡប់ទៅកាន់ Bot នៅក្នុង Telegram វិញ
+        // ៤. 🎯 ជំហានគន្លឹះ៖ ផ្ញើទិន្នន័យជា JSON ទៅកាន់ Telegram Bot ភ្លាមៗ
         tg.sendData(JSON.stringify(formData));
 
-        // 🎯 លោតសារ Alert ជូនដំណឹង និងបញ្ជាឱ្យបិទផ្ទាំង WebApp ភ្លាមៗ
-        alert("សំបុត្រកិច្ចការ (Ticket) របស់អ្នកត្រូវបានផ្ញើជោគជ័យ!");
+        // ៥. 🎯 ជំហានគន្លឹះទី ២៖ បញ្ជាឱ្យបិទផ្ទាំង WebApp នេះភ្លាមៗតែម្តង
         tg.close(); 
     });
 </script>
