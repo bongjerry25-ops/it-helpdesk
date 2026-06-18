@@ -7,7 +7,7 @@
     <!-- នាំចូលពុម្ពអក្សរដិតស្អាតលំដាប់ Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:ital,wght@0,100..0,700;1,100..0,700&family=Koh+Santepheap:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kantomruy+Pro:ital,wght@0,100..0,700;1,100..0,700&family=Koh+Santepheap:wght@100;300;400;700;900&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -44,7 +44,6 @@
             max-width: 460px;
             box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5),
                         0 0 50px -10px rgba(14, 165, 233, 0.15);
-            transition: transform 0.3s ease;
         }
 
         .header-area {
@@ -68,7 +67,6 @@
             font-size: 22px;
             font-weight: 700;
             letter-spacing: 0.5px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
 
         .form-group {
@@ -81,10 +79,8 @@
             font-size: 13px;
             color: var(--text-muted);
             font-weight: 500;
-            letter-spacing: 0.3px;
         }
 
-        /* រចនាប្រអប់ Inputs ទាំងអស់ឱ្យស្មើគ្នា និងស្អាត */
         input, select, textarea {
             width: 100%;
             padding: 14px 16px;
@@ -95,14 +91,13 @@
             font-size: 14px;
             box-sizing: border-box;
             font-family: inherit;
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.25s ease;
         }
 
         input::placeholder, textarea::placeholder {
             color: #4b5563;
         }
 
-        /* នៅពេលបុគ្គលិកចុចចំប្រអប់បញ្ចូលទិន្នន័យ (Focus) */
         input:focus, select:focus, textarea:focus {
             outline: none;
             border-color: var(--primary-blue);
@@ -126,7 +121,6 @@
             line-height: 1.5;
         }
 
-        /* រចនាប៊ូតុង Submit ឱ្យមានសោភ័ណភាពខ្ពស់ */
         button {
             width: 100%;
             padding: 15px;
@@ -149,18 +143,12 @@
             transform: translateY(-1px);
         }
 
-        button:active {
-            transform: translateY(1px);
-            box-shadow: 0 3px 10px rgba(14, 165, 233, 0.2);
-        }
-
         button:disabled {
             background: #1e293b;
             border: 1px solid #334155;
             color: #64748b;
             cursor: not-allowed;
             box-shadow: none;
-            transform: none;
         }
     </style>
 </head>
@@ -170,8 +158,8 @@
     <div class="header-area">
         <div class="icon-badge">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="%230ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M12 6V12L16 14" stroke="%230ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 6V12L16 14" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
         </div>
         <h2>បង្កើត IT Ticket ថ្មី</h2>
@@ -221,9 +209,9 @@
 </div>
 
 <script>
-    // 🔒 រក្សាកូដ PLACEHOLDER នេះដដែល ដើម្បីឱ្យ GitHub Actions ធ្វើការប្តូរស្វ័យប្រវត្ត
-    const BOT_TOKEN = "TELEGRAM_BOT_TOKEN_PLACEHOLDER"; 
-    const CHAT_ID = "TELEGRAM_CHAT_ID_PLACEHOLDER"; 
+    // ⚙️ បំពេញទិន្នន័យសម្ងាត់ពិតប្រាកដរបស់បងនៅទីនេះផ្ទាល់តែម្តង៖
+    const BOT_TOKEN = "8231578762:AAH7m8S-89m4uLzc90ZzDlgnDTa-CtDctn4"; 
+    const CHAT_ID = "-1004411442816"; // ត្រូវតែមានសញ្ញាដក ឧទាហរណ៍៖ -100123456789
 
     document.getElementById("ticketForm").addEventListener("submit", function(e) {
         e.preventDefault();
@@ -262,11 +250,11 @@
                 alert("🎉 សំបុត្រកិច្ចការ (Ticket) របស់អ្នកត្រូវបានផ្ញើជូនក្រុមការងារ IT រួចរាល់ហើយ!");
                 document.getElementById("ticketForm").reset();
             } else {
-                alert("ការផ្ញើបរាជ័យ! សូមពិនិត្យមើលការកំណត់ទិន្នន័យសម្ងាត់ (Secrets) លើ GitHub ឡើងវិញ។");
+                alert("ការផ្ញើបរាជ័យ! សូមពិនិត្យមើលលេខ Bot Token ឬ Group ID នៅក្នុងកូដឡើងវិញ។");
             }
         })
         .catch(error => {
-            alert("មានបញ្ហាបច្គេកទេស៖ " + error);
+            alert("មានបញ្ហាបច្ចេកទេសតភ្ជាប់៖ " + error);
         })
         .finally(() => {
             btn.disabled = false;
