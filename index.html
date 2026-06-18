@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Helpdesk Ticket</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #f3f4f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 15px;
+        }
+
+        .ticket-container {
+            background-color: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            width: 100%;
+            max-width: 450px; /* ទំហំសមល្មមសម្រាប់អេក្រង់ទូរស័ព្ទ */
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: #1e293b;
+            color: #ffffff;
+            padding: 20px;
+            position: relative;
+        }
+
+        .terminal-id {
+            font-size: 11px;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .header h2 {
+            font-size: 20px;
+            margin-top: 5px;
+            font-weight: 700;
+        }
+
+        .status-badge {
+            position: absolute;
+            right: 20px;
+            top: 22px;
+            background-color: #1e3a8a;
+            color: #38bdf8;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #38bdf8;
+            border-radius: 50%;
+        }
+
+        .form-body {
+            padding: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        label {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            color: #475569;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+        }
+
+        label span {
+            color: #ef4444;
+        }
+
+        input[type="text"], select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #334155;
+            background-color: #fff;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        input[type="text"]:focus, select:focus, textarea:focus {
+            border-color: #2563eb;
+        }
+
+        .sub-category-box {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 18px;
+        }
+
+        .char-count {
+            float: right;
+            font-size: 11px;
+            color: #94a3b8;
+        }
+
+        textarea {
+            resize: none;
+            height: 100px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background-color: #1d4ed8;
+            color: white;
+            border: none;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 6px rgba(29, 78, 216, 0.2);
+        }
+
+        .submit-btn:active {
+            background-color: #1e40af;
+        }
+
+        .footer-text {
+            text-align: center;
+            font-size: 11px;
+            color: #64748b;
+            margin-top: 15px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+<div class="ticket-container">
+    <div class="header">
+        <div class="terminal-id">Terminal ID: DESK-2026</div>
+        <h2>IT HELPDESK TICKET</h2>
+        <div class="status-badge">
+            <div class="status-dot"></div> SYSTEM ONLINE
+        </div>
+    </div>
+
+    <form class="form-body" onsubmit="event.preventDefault(); alert('Ticket Submitted! (ទិន្នន័យត្រូវបានផ្ញើជាគំរូ)');">
+        
+        <div class="form-group">
+            <label>Your Name <span>*</span></label>
+            <input type="text" placeholder="Enter your name" required>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label>Branch <span>*</span></label>
+                <select required>
+                    <option value="">Select Branch</option>
+                    <option value="Phnom Penh">Phnom Penh</option>
+                    <option value="Siem Reap">Siem Reap</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Position <span>*</span></label>
+                <select required>
+                    <option value="">Select Position</option>
+                    <option value="Staff">Staff</option>
+                    <option value="Manager">Manager</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label>Issue Type <span>*</span></label>
+                <select required>
+                    <option value="Software Issue">Software Issue</option>
+                    <option value="Hardware Issue">Hardware Issue</option>
+                    <option value="Network">Network Issue</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Priority Level</label>
+                <select>
+                    <option>Medium (Partial disruption)</option>
+                    <option>Low (General inquiry)</option>
+                    <option>High (Critical block)</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="sub-category-box">
+            <label style="color: #1e40af;">🏷️ Software Category</label>
+            <select>
+                <option>Microsoft Word</option>
+                <option>Microsoft Excel</option>
+                <option>Email Outlook</option>
+                <option>Other Software</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <span class="char-count">Min 10 chars</span>
+            <label>Description <span>*</span></label>
+            <textarea placeholder="Describe the issue in detail..." minlength="10" required></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">
+            SUBMIT TICKET ➔
+        </button>
+
+        <div class="footer-text">
+            Tickets are typically addressed within 2 business hours.
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
