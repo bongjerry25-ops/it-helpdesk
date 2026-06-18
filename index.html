@@ -3,16 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Raise IT Ticket</title>
-    <!-- នាំចូល Telegram WebApp SDK -->
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <title>IT Helpdesk Service</title>
     <style>
         body {
             font-family: 'Khmer OS Battambang', -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: #0f172a; /* ពណ៌ផ្ទៃក្រោយខៀវស្រងាត់ */
+            background-color: #0f172a;
             color: #f8fafc;
             margin: 0;
-            padding: 20px;
+            padding: 15px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -21,138 +19,83 @@
         }
         .form-container {
             background-color: #1e293b;
-            border: 1px solid #38bdf8; /* បន្ទាត់ជុំវិញពណ៌ខៀវខ្ចី */
+            border: 1px solid #38bdf8;
             border-radius: 12px;
             padding: 24px;
             width: 100%;
             max-width: 450px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
         }
         h2 {
             margin-top: 0;
             color: #38bdf8;
             text-align: center;
             font-size: 22px;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
+            letter-spacing: 0.5px;
         }
         .form-group {
             margin-bottom: 16px;
         }
         label {
             display: block;
-            margin-bottom: 6px;
-            font-size: 14px;
+            margin-bottom: 8px;
+            font-size: 13px;
             color: #94a3b8;
+            font-weight: 500;
         }
         input, select, textarea {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             background-color: #0f172a;
             border: 1px solid #475569;
-            border-radius: 6px;
+            border-radius: 8px;
             color: #f8fafc;
             font-size: 14px;
             box-sizing: border-box;
-            font-family: inherit;
+            transition: border-color 0.2s, box-shadow 0.2s;
         }
         input:focus, select:focus, textarea:focus {
             outline: none;
             border-color: #38bdf8;
+            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
         }
         textarea {
             resize: vertical;
-            min-height: 80px;
+            min-height: 100px;
         }
         button {
             width: 100%;
-            padding: 12px;
+            padding: 14px;
             background-color: #38bdf8;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             color: #0f172a;
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
-            margin-top: 10px;
-            transition: background-color 0.2s;
+            margin-top: 12px;
+            transition: background-color 0.2s, transform 0.1s;
         }
         button:hover {
             background-color: #0ea5e9;
+        }
+        button:active {
+            transform: scale(0.98);
+        }
+        button:disabled {
+            background-color: #64748b;
+            color: #cbd5e1;
+            cursor: not-allowed;
         }
     </style>
 </head>
 <body>
 
 <div class="form-container">
-    <h2>🎯 បង្កើត IT Ticket ថ្មី</h2>
-    
+    <h2>🎯 ស្កែនបង្កើត IT Ticket ថ្មី</h2>
     <form id="ticketForm">
-        <!-- ប្រអប់បញ្ចូលឈ្មោះ -->
         <div class="form-group">
             <label for="name">ឈ្មោះបុគ្គលិក (Name)</label>
             <input type="text" id="name" placeholder="ឧទាហរណ៍៖ សុខ ជា" required>
         </div>
-
-        <!-- ប្រអប់ជ្រើសរើសផ្នែក -->
-        <div class="form-group">
-            <label for="department">ផ្នែក / នាយកដ្ឋាន (Department)</label>
-            <select id="department" required>
-                <option value="">-- សូមជ្រើសរើសផ្នែក --</option>
-                <option value="HR">ធនធានមនុស្ស (HR)</option>
-                <option value="Finance">ហិរញ្ញវត្ថុ (Finance)</option>
-                <option value="Operations">ប្រតិបត្តិការ (Operations)</option>
-                <option value="Sales">លក់ និងទីផ្សារ (Sales)</option>
-                <option value="Other">ផ្សេងៗ (Other)</option>
-            </select>
-        </div>
-
-        <!-- ប្រអប់ជ្រើសរើសប្រភេទបញ្ហា -->
-        <div class="form-group">
-            <label for="issue_type">ប្រភេទបញ្ហា (Issue Type)</label>
-            <select id="issue_type" required>
-                <option value="">-- សូមជ្រើសរើសបញ្ហា --</option>
-                <option value="Hardware">បញ្ហាគ្រឿងម៉ាស៊ីន (Hardware)</option>
-                <option value="Software">បញ្ហាកម្មវិធី (Software)</option>
-                <option value="Network">បញ្ហាអ៊ីនធឺណិត (Network)</option>
-                <option value="Account/Password">គណនី ឬ ពាក្យសម្ងាត់</option>
-            </select>
-        </div>
-
-        <!-- ប្រអប់ពិពណ៌នាបញ្ហា -->
-        <div class="form-group">
-            <label for="description">ការពិពណ៌នាបន្ថែម (Description)</label>
-            <textarea id="description" placeholder="សូមរៀបរាប់ពីបញ្ហារបស់អ្នកនៅទីនេះ..." required></textarea>
-        </div>
-
-        <!-- ប៊ូតុង Submit -->
-        <button type="submit">ផ្ញើព័ត៌មាន (Submit)</button>
-    </form>
-</div>
-
-<script>
-    // ១. ចាប់ផ្តើមទាញយកប្រព័ន្ធ Telegram WebApp SDK
-    const tg = window.Telegram.WebApp;
-    tg.ready();
-    tg.expand();
-
-    // ២. ចាប់យកព្រឹត្តិការណ៍នៅពេល User ចុចប៊ូតុង Submit លើ Form
-    document.getElementById("ticketForm").addEventListener("submit", function(e) {
-        e.preventDefault(); // ការពារកុំឱ្យវា Refresh ទំព័រ
-
-        // ៣. ចាប់យកទិន្នន័យពីគ្រប់ប្រអប់ (ត្រូវប្រាកដថា ID ទាំងនេះត្រូវគ្នាជាមួយ ID នៃ input/select របស់បង)
-        const formData = {
-            issue_type: document.getElementById("issue_type") ? document.getElementById("issue_type").value : "Software Issue",
-            category: document.getElementById("software_category") ? document.getElementById("software_category").value : "Microsoft Word",
-            description: document.getElementById("description") ? document.getElementById("description").value : ""
-        };
-
-        // ៤. 🎯 ជំហានគន្លឹះ៖ ផ្ញើទិន្នន័យជា JSON ទៅកាន់ Telegram Bot ភ្លាមៗ
-        tg.sendData(JSON.stringify(formData));
-
-        // ៥. 🎯 ជំហានគន្លឹះទី ២៖ បញ្ជាឱ្យបិទផ្ទាំង WebApp នេះភ្លាមៗតែម្តង
-        tg.close(); 
-    });
-</script>
-
-</body>
-</html>
