@@ -95,7 +95,105 @@
 <div class="form-container">
     <h2>🎯 ស្កែនបង្កើត IT Ticket ថ្មី</h2>
     <form id="ticketForm">
+        <!-- ឈ្មោះបុគ្គលិក -->
         <div class="form-group">
             <label for="name">ឈ្មោះបុគ្គលិក (Name)</label>
             <input type="text" id="name" placeholder="ឧទាហរណ៍៖ សុខ ជា" required>
         </div>
+
+        <!-- ផ្នែក/នាយកដ្ឋាន -->
+        <div class="form-group">
+            <label for="department">ផ្នែក / នាយកដ្ឋាន (Department)</label>
+            <select id="department" required>
+                <option value="">-- សូមជ្រើសរើសផ្នែក --</option>
+                <option value="HR & Admin">ធនធានមនុស្ស (HR & Admin)</option>
+                <option value="Finance">ហិរញ្ញវត្ថុ (Finance)</option>
+                <option value="Operations">ប្រតិបត្តិការ (Operations)</option>
+                <option value="Sales & Marketing">លក់ និងទីផ្សារ (Sales & Marketing)</option>
+                <option value="Other">ផ្សេងៗ (Other)</option>
+            </select>
+        </div>
+
+        <!-- ប្រភេទបញ្ហា -->
+        <div class="form-group">
+            <label for="issue_type">ប្រភេទបញ្ហា (Issue Type)</label>
+            <select id="issue_type" required>
+                <option value="">-- សូមជ្រើសរើសបញ្ហា --</option>
+                <option value="Hardware Issue">បញ្ហាគ្រឿងម៉ាស៊ីន (PC/Laptop/Printer)</option>
+                <option value="Software Issue">បញ្ហាកម្មវិធី (Email/Word/Excel/ERP)</option>
+                <option value="Network Issue">បញ្ហាអ៊ីនធឺណិត (Internet/Wi-Fi/VPN)</option>
+                <option value="Account/Password">គណនី ឬ ពាក្យសម្ងាត់ (Reset Password)</option>
+            </select>
+        </div>
+
+        <!-- การពិពណ៌នាបន្ថែម -->
+        <div class="form-group">
+            <label for="description">ការពិពណ៌នាបន្ថែម (Description)</label>
+            <textarea id="description" placeholder="សូមរៀបរាប់ពីបញ្ហារបស់អ្នកនៅទីនេះ..." required></textarea>
+        </div>
+
+        <!-- ប៊ូតុងផ្ញើ -->
+        <button type="submit" id="submitBtn">ផ្ញើព័ត៌មាន (Submit Ticket)</button>
+    </form>
+</div>
+
+<script>
+    // 🔒 រក្សាទុកពាក្យ PLACEHOLDER នេះដដែល (កុំដូរចេញ) 
+    // ប្រព័ន្ធ GitHub Actions នឹងយកទិន្នន័យសម្ងាត់ពី Repository Secrets មកប្តូរជំនួសពេល Deploy ទៅកាន់ branch gh-pages
+    const BOT_TOKEN = "TELEGRAM_BOT_TOKEN_PLACEHOLDER"; 
+    const CHAT_ID = "TELEGRAM_CHAT_ID_PLACEHOLDER"; 
+
+    document.getElementById("ticketForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        const btn = document.getElementById("submitBtn");
+        btn.disabled = true;
+        btn.innerText = "កំពុងផ្ញើ...";
+
+        const name = document.getElementById("name").value;
+        const dept = document.getElementById("department").value;
+        const issue = document.getElementById("issue_type").value;
+        const desc = document.getElementById("description").value;
+
+        // រៀបចំសារជាទម្រង់ HTML សម្រាប់បាញ់ចូល Telegram Group
+        const messageText = `🎯 <b>ទទួលបាន IT Ticket ថ្មី (តាមរយៈ QR)</b>\n` +
+                            `---------------------------\n` +
+                            `👤 <b>ឈ្មោះបុគ្គលិក:</b> ${name}\n` +
+                            `🏢 <b>ផ្នែក/Dept:</b> ${dept}\n` +
+                            `🛠️ <b>ប្រភេទបញ្ហា:</b> ${issue}\n` +
+                            `📝 <b>ការពិពណ៌នា:</b> ${desc}\n` +
+                            `---------------------------\n` +
+                            `⚡ <i>សូមក្រុមការងារ IT មេត្តាពិនិត្យជូន!</i>`;
+
+        const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+        
+        // ប្រើប្រាស់ Fetch API ដើម្បីបាញ់ទិន្នន័យត្រង់ទៅកាន់ Telegram Bot API ផ្ទាល់
+        fetch(url, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                chat_id: CHAT_ID,
+                text: messageText,
+                parse_mode: "HTML"
+            })
+        })
+        .then(response => {
+            if(response.ok) {
+                alert("🎉 សំបុត្រកិច្ចការ (Ticket) របស់អ្នកត្រូវបានផ្ញើជូនក្រុមការងារ IT រួចរាល់ហើយ!");
+                document.getElementById("ticketForm").reset(); // សម្អាតទិន្នន័យលើ Form ឡើងវិញ
+            } else {
+                alert("ការផ្ញើបរាជ័យ! សូមពិនិត្យមើលការកំណត់ទិន្នន័យសម្ងាត់ (Secrets) លើ GitHub ឡើងវិញ។");
+            }
+        })
+        .catch(error => {
+            alert("មានបញ្ហាបច្ចេកទេសក្នុងការតភ្ជាប់៖ " + error);
+        })
+        .finally(() => {
+            btn.disabled = false;
+            btn.innerText = "ផ្ញើព័ត៌មាន (Submit Ticket)";
+        });
+    });
+</script>
+
+</body>
+</html>
