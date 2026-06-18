@@ -1,0 +1,27 @@
+name: Deploy WebApp Securely
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Inject Secrets into index.html
+        run: |
+          sed -i 's/TELEGRAM_BOT_TOKEN_PLACEHOLDER/${{ secrets.TELEGRAM_BOT_TOKEN }}/g' index.html
+          sed -i 's/TELEGRAM_CHAT_ID_PLACEHOLDER/${{ secrets.TELEGRAM_CHAT_ID }}/g' index.html
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: .
+          branch: gh-pages # បង្កើត branch ថ្មីមួយឈ្មោះ gh-pages ដោយស្វ័យប្រវត្តិ
