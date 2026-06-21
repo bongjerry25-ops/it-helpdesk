@@ -24,66 +24,83 @@
             <input type="text" id="name" placeholder="Full Name" required class="input-field">
         </div>
 
-        <div class="custom-select-wrapper" id="deptWrapper">
+        <div class="custom-select-wrapper">
             <div class="select-trigger" id="deptTrigger">-- សូមជ្រើសរើសសាខា --</div>
             <div class="select-options" id="deptOptions">
                 <div class="option" data-value="HQ - Credit">ការិយាល័យកណ្តាល - ឥណទាន</div>
                 <div class="option" data-value="Branch - Tuol Kouk">សាខា - ទួលគោក</div>
                 <div class="option" data-value="Branch - Olympic">សាខា - អូឡាំពិក</div>
+                <div class="option" data-value="Branch - Siem Reap">សាខា - សៀមរាប</div>
             </div>
             <input type="hidden" id="department" required>
         </div>
 
-        <div class="custom-select-wrapper" id="issueWrapper">
-            <div class="select-trigger" id="issueTrigger">-- សូមជ្រើសរើសប្រភេទបញ្ហា --</div>
+        <div class="custom-select-wrapper">
+            <div class="select-trigger" id="issueTrigger">-- ប្រភេទបញ្ហា --</div>
             <div class="select-options" id="issueOptions">
-                <div class="option" data-value="Software">បញ្ហាកម្មវិធី (Software)</div>
-                <div class="option" data-value="Hardware">បញ្ហាគ្រឿងម៉ាស៊ីន (Hardware)</div>
+                <div class="option" data-value="Software">Software</div>
+                <div class="option" data-value="Hardware">Hardware</div>
             </div>
             <input type="hidden" id="issue_type" required>
         </div>
 
-        <textarea id="description" placeholder="សូមរៀបរាប់ពីបញ្ហា..." required class="input-field" rows="3"></textarea>
+        <div id="sub_category_area" class="hidden">
+            <div class="custom-select-wrapper">
+                <div class="select-trigger" id="subTrigger">-- បញ្ហាលម្អិត --</div>
+                <div class="select-options" id="subOptions"></div>
+                <input type="hidden" id="sub_issue">
+            </div>
+        </div>
 
+        <textarea id="description" placeholder="ពិពណ៌នាបញ្ហា..." required class="input-field" rows="3"></textarea>
         <button type="submit" id="submitBtn" class="submit-btn">Submit Ticket</button>
     </form>
 </div>
 
 <script>
-    // មុខងារសម្រាប់គ្រប់គ្រង Custom Dropdown ទាំងអស់
+    const subCategories = {
+        "Software": ["Email", "Core Banking", "Windows"],
+        "Hardware": ["Printer", "Network", "Laptop"]
+    };
+
+    // Logic គ្រប់គ្រង Dropdown
     document.querySelectorAll('.custom-select-wrapper').forEach(wrapper => {
         const trigger = wrapper.querySelector('.select-trigger');
         const options = wrapper.querySelector('.select-options');
-        
         trigger.addEventListener('click', (e) => {
             e.stopPropagation();
-            document.querySelectorAll('.select-options').forEach(opt => opt.classList.remove('show'));
+            document.querySelectorAll('.select-options').forEach(o => o.classList.remove('show'));
             options.classList.toggle('show');
         });
-
-        wrapper.querySelectorAll('.option').forEach(option => {
-            option.addEventListener('click', () => {
-                trigger.innerText = option.innerText;
-                wrapper.querySelector('input').value = option.dataset.value;
+        wrapper.querySelectorAll('.option').forEach(opt => {
+            opt.addEventListener('click', () => {
+                trigger.innerText = opt.innerText;
+                wrapper.querySelector('input').value = opt.dataset.value;
                 options.classList.remove('show');
+                
+                // បើជាប្រភេទបញ្ហា បង្ហាញ Sub-issue
+                if (wrapper.querySelector('input').id === 'issue_type') {
+                    const subArea = document.getElementById('sub_category_area');
+                    const subOpt = document.getElementById('subOptions');
+                    subArea.classList.remove('hidden');
+                    subOpt.innerHTML = '';
+                    subCategories[opt.dataset.value].forEach(item => {
+                        const div = document.createElement('div');
+                        div.className = 'option';
+                        div.innerText = item;
+                        div.onclick = () => {
+                            document.getElementById('subTrigger').innerText = item;
+                            document.getElementById('sub_issue').value = item;
+                            subOpt.classList.remove('show');
+                        };
+                        subOpt.appendChild(div);
+                    });
+                }
             });
         });
     });
 
-    // បិទ Dropdown ពេលចុចខាងក្រៅ
-    window.addEventListener('click', () => {
-        document.querySelectorAll('.select-options').forEach(opt => opt.classList.remove('show'));
-    });
-
-    // Telegram Script (ប្រើ Placeholder សម្រាប់ GitHub Secrets)
-    const telegramBotToken = "8231578762:AAH7m8S-89m4uLzc90ZzDlgnDTa-CtDctn4";
-    const telegramChatId = "-1004411442816";
-
-    document.getElementById('ticketForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        alert("សំបុត្រត្រូវបានបញ្ជូនដោយជោគជ័យ!"); // ជំនួសដោយ Logic បញ្ជូនទៅ Telegram
-    });
+    window.addEventListener('click', () => document.querySelectorAll('.select-options').forEach(o => o.classList.remove('show')));
 </script>
-
 </body>
 </html>
