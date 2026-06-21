@@ -3,104 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IT Helpdesk - Premium Portal</title>
+    <title>IT Helpdesk Enterprise Portal</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="bg-slate-950 min-h-screen flex items-center justify-center p-4">
 
 <div class="card-container">
-    <div class="flex flex-col items-center mb-6">
-        <div class="logo-box">
-            <img src="12.png" alt="IT Support Logo">
-        </div>
-        <h2 class="text-xl font-bold text-white mt-2">IT HELPDESK SERVICE</h2>
+    <div class="text-center mb-8">
+        <div class="logo-box"><img src="12.png" alt="Logo"></div>
+        <h1 class="text-2xl font-bold text-white mt-2">IT HELPDESK PORTAL</h1>
+        <p class="text-blue-400 text-sm tracking-widest uppercase">Fast • Secure • Professional</p>
     </div>
 
-    <form id="ticketForm" class="space-y-4">
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <input type="text" id="staff_id" placeholder="Staff ID" required class="input-field">
-            <input type="text" id="name" placeholder="Full Name" required class="input-field">
+    <form id="ticketForm" class="space-y-5">
+        <div class="grid grid-cols-2 gap-4">
+            <input type="text" placeholder="Staff ID" class="input-field" required>
+            <input type="text" placeholder="Full Name" class="input-field" required>
         </div>
 
-        <div class="custom-select-wrapper">
-            <div class="select-trigger" id="deptTrigger">-- សូមជ្រើសរើសសាខា --</div>
-            <div class="select-options" id="deptOptions">
-                <div class="option" data-value="HQ - Credit">ការិយាល័យកណ្តាល - ឥណទាន</div>
-                <div class="option" data-value="Branch - Tuol Kouk">សាខា - ទួលគោក</div>
-                <div class="option" data-value="Branch - Olympic">សាខា - អូឡាំពិក</div>
-                <div class="option" data-value="Branch - Siem Reap">សាខា - សៀមរាប</div>
-            </div>
-            <input type="hidden" id="department" required>
-        </div>
+        <select class="input-field w-full">
+            <option>🏢 Select Branch/Department</option>
+            <option>HQ - Credit & Loan</option>
+            <option>Branch - Tuol Kouk</option>
+        </select>
 
-        <div class="custom-select-wrapper">
-            <div class="select-trigger" id="issueTrigger">-- ប្រភេទបញ្ហា --</div>
-            <div class="select-options" id="issueOptions">
-                <div class="option" data-value="Software">Software</div>
-                <div class="option" data-value="Hardware">Hardware</div>
-            </div>
-            <input type="hidden" id="issue_type" required>
-        </div>
+        <select id="cat" class="input-field w-full">
+            <option>📂 Select Category</option>
+            <option value="Software">Software</option>
+            <option value="Hardware">Hardware</option>
+        </select>
 
-        <div id="sub_category_area" class="hidden">
-            <div class="custom-select-wrapper">
-                <div class="select-trigger" id="subTrigger">-- បញ្ហាលម្អិត --</div>
-                <div class="select-options" id="subOptions"></div>
-                <input type="hidden" id="sub_issue">
+        <div class="p-4 bg-slate-800/50 rounded-xl border border-slate-700">
+            <label class="block text-slate-400 text-xs mb-2">PRIORITY</label>
+            <div class="flex gap-2">
+                <label class="priority-radio"><input type="radio" name="prio" value="low"> Low</label>
+                <label class="priority-radio"><input type="radio" name="prio" value="med"> Med</label>
+                <label class="priority-radio"><input type="radio" name="prio" value="high"> High</label>
+                <label class="priority-radio"><input type="radio" name="prio" value="crit"> Critical</label>
             </div>
         </div>
 
-        <textarea id="description" placeholder="ពិពណ៌នាបញ្ហា..." required class="input-field" rows="3"></textarea>
-        <button type="submit" id="submitBtn" class="submit-btn">Submit Ticket</button>
+        <textarea placeholder="Describe your issue..." class="input-field w-full h-24" required></textarea>
+
+        <label class="upload-btn">
+            📎 Attach Screenshot / Error Log
+            <input type="file" class="hidden">
+        </label>
+
+        <button type="submit" class="submit-btn">Submit Support Ticket</button>
     </form>
 </div>
-
-<script>
-    const subCategories = {
-        "Software": ["Email", "Core Banking", "Windows"],
-        "Hardware": ["Printer", "Network", "Laptop"]
-    };
-
-    // Logic គ្រប់គ្រង Dropdown
-    document.querySelectorAll('.custom-select-wrapper').forEach(wrapper => {
-        const trigger = wrapper.querySelector('.select-trigger');
-        const options = wrapper.querySelector('.select-options');
-        trigger.addEventListener('click', (e) => {
-            e.stopPropagation();
-            document.querySelectorAll('.select-options').forEach(o => o.classList.remove('show'));
-            options.classList.toggle('show');
-        });
-        wrapper.querySelectorAll('.option').forEach(opt => {
-            opt.addEventListener('click', () => {
-                trigger.innerText = opt.innerText;
-                wrapper.querySelector('input').value = opt.dataset.value;
-                options.classList.remove('show');
-                
-                // បើជាប្រភេទបញ្ហា បង្ហាញ Sub-issue
-                if (wrapper.querySelector('input').id === 'issue_type') {
-                    const subArea = document.getElementById('sub_category_area');
-                    const subOpt = document.getElementById('subOptions');
-                    subArea.classList.remove('hidden');
-                    subOpt.innerHTML = '';
-                    subCategories[opt.dataset.value].forEach(item => {
-                        const div = document.createElement('div');
-                        div.className = 'option';
-                        div.innerText = item;
-                        div.onclick = () => {
-                            document.getElementById('subTrigger').innerText = item;
-                            document.getElementById('sub_issue').value = item;
-                            subOpt.classList.remove('show');
-                        };
-                        subOpt.appendChild(div);
-                    });
-                }
-            });
-        });
-    });
-
-    window.addEventListener('click', () => document.querySelectorAll('.select-options').forEach(o => o.classList.remove('show')));
-</script>
 </body>
 </html>
