@@ -14,36 +14,25 @@ body {
     border: 1px solid #334155;
 }
 
-/* រចនាប្រអប់ Logo ឱ្យមូលស្អាត និងលាក់ជ្រុងពណ៌សបន្តិច */
-/* រចនាប្រអប់ Logo ឱ្យជារង្វង់មូល (Circle) ស្អាតឥតខ្ចោះ */
+/* រចនារង្វង់ Logo ពណ៌ Premium ងងឹត ដូចទម្រង់ដើម */
 .logo-box {
-    width: 90px;
-    height: 90px;
-    border-radius: 50%; /* កំណត់ជារង្វង់មូល */
-    overflow: hidden; /* កាត់គែមរូបភាពដែលលានចេញពីរង្វង់ */
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
     margin: 0 auto 15px auto;
-    background-color: transparent; 
-    border: 2px solid #334155; /* បន្ថែមស៊ុមរង្វង់មូលពណ៌ប្រផេះ */
+    background-color: #0f172a; /* ផ្ទៃពណ៌ខៀវងងឹតស៊ីគ្នាជាមួយវេបសាយ */
+    border: 1px solid #3b82f6; /* ស៊ុមពណ៌ខៀវស្តើងបែប Premium ដូចចាស់ */
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.15); /* ពន្លឺខៀវជុំវិញតិចៗ */
 }
 
 .logo-box img { 
     width: 100%; 
     height: 100%;
-    object-fit: cover; /* ទាញរូបភាពឱ្យពេញរង្វង់ល្អ មិនវៀច */
-}
-
-/* ចំណងជើងលើប្រអប់បញ្ជូលទិន្នន័យ */
-.input-label { 
-    display: block; 
-    color: #cbd5e1; 
-    font-size: 13.5px; 
-    font-weight: 500;
-    margin-bottom: 8px; 
-    text-align: left; 
+    object-fit: cover; 
 }
 
 /* ប្រអប់វាយបញ្ចូលទិន្នន័យ (Input Fields) */
