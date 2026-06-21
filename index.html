@@ -3,43 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IT Helpdesk Enterprise Portal</title>
+    <title>IT Enterprise Helpdesk</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-slate-950 min-h-screen flex items-center justify-center p-4">
+<body class="bg-slate-950 p-4 md:p-10">
 
-<div class="card-container">
-    <div class="text-center mb-8">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 max-w-4xl mx-auto">
+    <div class="stat-card"><h3>128</h3><p>Today</p></div>
+    <div class="stat-card"><h3>12</h3><p>Open</p></div>
+    <div class="stat-card"><h3>98</h3><p>Closed</p></div>
+    <div class="stat-card"><h3>94%</h3><p>SLA</p></div>
+</div>
+
+<div class="card-container max-w-2xl mx-auto">
+    <div class="text-center mb-6">
         <div class="logo-box"><img src="12.png" alt="Logo"></div>
         <h1 class="text-2xl font-bold text-white mt-2">IT HELPDESK PORTAL</h1>
-        <p class="text-blue-400 text-sm tracking-widest">FAST • SECURE • PROFESSIONAL</p>
+        <p class="text-blue-400 text-sm">Fast • Secure • Professional Support</p>
     </div>
 
-    <form id="ticketForm" class="space-y-5">
+    <form id="ticketForm" class="space-y-4">
         <div class="grid grid-cols-2 gap-4">
             <input type="text" id="staff_id" placeholder="Staff ID" class="input-field" required>
             <input type="text" id="full_name" placeholder="Full Name" class="input-field" required>
         </div>
         <select class="input-field w-full">
-            <option>🏢 Select Branch/Department</option>
-            <option>HQ - Credit & Loan</option>
-            <option>Branch - Tuol Kouk</option>
+            <option>🏢 Branch / Department ▼</option>
         </select>
-
+        
         <h2 class="text-slate-400 text-sm font-bold uppercase mt-4">Ticket Information</h2>
         <select id="category" class="input-field w-full">
-            <option>📂 Category</option>
-            <option value="Software">Software</option>
-            <option value="Hardware">Hardware</option>
+            <option>📂 Category ▼</option>
         </select>
         <select id="issue_type" class="input-field w-full">
-            <option>⚙️ Issue Type</option>
+            <option>⚙️ Issue Type ▼</option>
         </select>
 
-        <div class="p-3 bg-slate-800/50 rounded-xl border border-slate-700">
-            <label class="block text-slate-400 text-xs mb-2">PRIORITY</label>
-            <div class="flex gap-2">
+        <div class="p-4 bg-slate-800/30 rounded-xl border border-slate-700">
+            <label class="text-slate-400 text-xs">PRIORITY</label>
+            <div class="flex gap-2 mt-2">
                 <label class="priority-radio"><input type="radio" name="prio" value="low"> Low</label>
                 <label class="priority-radio"><input type="radio" name="prio" value="med"> Med</label>
                 <label class="priority-radio"><input type="radio" name="prio" value="high"> High</label>
@@ -47,26 +50,23 @@
             </div>
         </div>
 
-        <textarea placeholder="Describe your issue..." class="input-field w-full h-24" required></textarea>
-        
-        <label class="upload-btn">📎 Attach Screenshot / Document</label>
-
+        <textarea placeholder="Describe your issue..." class="input-field w-full h-32"></textarea>
+        <label class="upload-btn">📎 Attach Screenshot / Error Log / Document</label>
         <button type="submit" class="submit-btn">Submit Support Ticket</button>
     </form>
 
-    <div class="mt-6 flex justify-between items-center text-xs text-slate-500 border-t border-slate-800 pt-4">
+    <div class="mt-6 border-t border-slate-800 pt-4 flex justify-between text-xs text-slate-500">
         <span>Status: <span class="text-green-500">● Online Support Team Available</span></span>
         <span id="ticketDisplay"></span>
     </div>
 </div>
 
 <script>
-    // Logic: Auto Ticket ID Generator
     document.getElementById('ticketForm').addEventListener('submit', function(e) {
         e.preventDefault();
-        const ticketId = "IT-" + new Date().getFullYear() + "-" + Math.floor(1000 + Math.random() * 9000);
-        alert("Ticket Created Successfully!\nTicket ID: " + ticketId);
-        document.getElementById('ticketDisplay').innerText = "Last Ticket: " + ticketId;
+        const id = "IT-2026-" + Math.floor(1000 + Math.random() * 9000);
+        alert("Ticket Created Successfully!\nTicket ID: " + id);
+        document.getElementById('ticketDisplay').innerText = "Last Ticket: " + id;
     });
 </script>
 </body>

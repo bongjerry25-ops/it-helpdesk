@@ -5,10 +5,7 @@ body { font-family: 'Kantumruy Pro', sans-serif; }
     backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 24px;
-    padding: 40px;
-    width: 100%;
-    max-width: 600px;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    padding: 35px;
 }
 
 .input-field {
@@ -17,15 +14,17 @@ body { font-family: 'Kantumruy Pro', sans-serif; }
     padding: 12px 16px;
     border-radius: 12px;
     color: white;
-    transition: 0.3s;
 }
 
-.input-field:focus { border-color: #3b82f6; outline: none; }
-
-.priority-radio {
-    flex: 1; text-align: center; padding: 8px; border-radius: 8px;
-    background: #1e293b; border: 1px solid #334155; cursor: pointer;
+.stat-card {
+    background: #1e293b;
+    padding: 15px;
+    border-radius: 16px;
+    text-align: center;
+    border: 1px solid #334155;
 }
+
+.stat-card h3 { font-size: 1.5rem; font-weight: bold; color: #3b82f6; }
 
 .submit-btn {
     width: 100%;
@@ -34,24 +33,16 @@ body { font-family: 'Kantumruy Pro', sans-serif; }
     padding: 16px;
     border-radius: 12px;
     font-weight: 700;
-    transition: 0.3s;
 }
 
-.submit-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3); }
-
-.upload-btn {
-    display: block;
-    padding: 12px;
-    border: 2px dashed #475569;
-    border-radius: 12px;
-    text-align: center;
-    color: #94a3b8;
-    cursor: pointer;
+.priority-radio {
+    flex: 1; text-align: center; padding: 8px; border-radius: 8px;
+    background: #0f172a; border: 1px solid #334155; cursor: pointer;
 }
 
 .logo-box {
     width: 90px; height: 90px;
     background: white; border-radius: 50%;
     margin: 0 auto; display: flex; align-items: center; justify-content: center;
-    overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    overflow: hidden;
 }
