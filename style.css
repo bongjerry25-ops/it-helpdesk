@@ -133,3 +133,20 @@ body {
     transform: none;
     border-color: transparent;
 }
+/* បន្ថែមនៅខាងក្រោមគេក្នុង style.css */
+@media (max-width: 640px) {
+    .card-container {
+        padding: 20px; /* កាត់បន្ថយគម្លាតនៅលើទូរស័ព្ទ */
+        border-radius: 15px;
+    }
+    .logo-box {
+        width: 70px; /* បង្រួម Logo បន្តិចនៅលើទូរស័ព្ទ */
+        height: 70px;
+    }
+    h2 {
+        font-size: 1.25rem; /* កាត់បន្ថយទំហំអក្សរចំណងជើង */
+    }
+    .grid {
+        gap: 12px; /* កាត់បន្ថយគម្លាតរវាងប្រអប់ */
+    }
+}
