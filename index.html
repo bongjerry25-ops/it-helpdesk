@@ -5,184 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IT Helpdesk - Premium Portal</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-[#0f172a] flex items-center justify-center min-h-screen p-4 sm:p-6">
+<body class="bg-[#0f172a] flex items-center justify-center min-h-screen p-4">
 
 <div class="card-container">
-    
-    <div class="flex flex-col items-center text-center mb-8">
+    <div class="flex flex-col items-center mb-6">
         <div class="logo-box">
-            <img src="12.png" alt="IT Support Logo">
+            <img src="12.png" alt="Logo">
         </div>
-        <h2 class="text-2xl font-bold text-white tracking-wide mt-3">IT HELPDESK SERVICE</h2>
-        <p class="text-xs uppercase tracking-widest text-[#008444] font-semibold mt-1">E-Ticket Secure Portal</p>
+        <h2 class="text-xl font-bold text-white mt-2">IT HELPDESK SERVICE</h2>
     </div>
 
-    <div class="flex items-center justify-center max-w-xs mx-auto mb-8 text-xs text-slate-400">
-        <div class="flex items-center">
-            <div class="step-dot step-active">1</div>
-            <span class="ml-2 font-medium text-white">បំពេញទម្រង់</span>
+    <form id="ticketForm" class="space-y-4">
+        <!-- Input fields... -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <input type="text" id="staff_id" placeholder="Staff ID" required class="input-field">
+            <input type="text" id="name" placeholder="Full Name" required class="input-field">
         </div>
-        <div class="w-12 h-[1px] bg-slate-700 mx-3"></div>
-        <div class="flex items-center">
-            <div class="step-dot step-inactive">2</div>
-            <span class="ml-2 font-medium">IT ដោះស្រាយ</span>
-        </div>
-    </div>
 
-    <form id="ticketForm" class="space-y-5">
-        
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            <div class="flex flex-col">
-                <label for="staff_id" class="input-label">អត្តសញ្ញាណប័ណ្ណបុគ្គលិក (Staff ID)</label>
-                <input type="text" id="staff_id" placeholder="ឧទាហរណ៍៖ 01234" required class="input-field">
+        <!-- Custom Dropdown សម្រាប់ Department -->
+        <div class="custom-select-wrapper" id="deptWrapper">
+            <div class="select-trigger" id="deptTrigger">-- សូមជ្រើសរើសសាខា --</div>
+            <div class="select-options" id="deptOptions">
+                <div class="option" data-value="HQ - Credit">ការិយាល័យកណ្តាល - ឥណទាន</div>
+                <div class="option" data-value="Branch - Tuol Kouk">សាខា - ទួលគោក</div>
+                <div class="option" data-value="Branch - Olympic">សាខា - អូឡាំពិក</div>
             </div>
-            <div class="flex flex-col">
-                <label for="name" class="input-label">ឈ្មោះពេញ (Full Name)</label>
-                <input type="text" id="name" placeholder="ឧទាហរណ៍៖ Min Pheap" required class="input-field">
-            </div>
+            <input type="hidden" id="department" required>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            <div class="flex flex-col">
-                <label for="department" class="input-label">ផ្នែក / សាខាធនាគារ (Department)</label>
-                <select id="department" required class="select-field">
-                    <option value="" class="bg-[#0f172a]">-- សូមជ្រើសរើសសាខា --</option>
-                    <option value="HQ - Credit & Loan" class="bg-[#0f172a]">ការិយាល័យកណ្តាល - ផ្នែកឥណទាន</option>
-                    <option value="HQ - Trade Finance" class="bg-[#0f172a]">ការិយាល័យកណ្តាល - ហិរញ្ញប្បទានពាណិជ្ជកម្ម</option>
-                    <option value="Branch - Tuol Kouk" class="bg-[#0f172a]">សាខា - ទួលគោក</option>
-                    <option value="Branch - Olympic" class="bg-[#0f172a]">សាខា - អូឡាំពិក</option>
-                    <option value="Branch - Siem Reap" class="bg-[#0f172a]">សាខា - ខេត្តសៀមរាប</option>
-                </select>
-            </div>
-            <div class="flex flex-col">
-                <label for="phone" class="input-label">លេខទូរស័ព្ទ (Phone Number)</label>
-                <input type="tel" id="phone" placeholder="ឧទាហរណ៍៖ 012 345 678" required class="input-field">
-            </div>
-        </div>
-
-        <div class="flex flex-col">
-            <label for="issue_type" class="input-label">ប្រភេទបញ្ហាធំ (Issue Type)</label>
-            <select id="issue_type" required class="select-field">
-                <option value="" class="bg-[#0f172a]">-- សូមជ្រើសរើសប្រភេទបញ្ហា --</option>
-                <option value="Software" class="bg-[#0f172a]">បញ្ហាកម្មវិធី / ប្រព័ន្ធធនាគារ (Software)</option>
-                <option value="Hardware" class="bg-[#0f172a]">បញ្ហាគ្រឿងម៉ាស៊ីន / ឧបករណ៍ (Hardware)</option>
-            </select>
-        </div>
-
-        <div id="sub_category_area" class="flex flex-col hidden transition-all duration-300">
-            <label for="sub_issue" class="input-label">ពិពណ៌នាបញ្ហាច្បាស់លាស់ (Issue Detail)</label>
-            <select id="sub_issue" class="select-field"></select>
-        </div>
-
-        <div class="flex flex-col">
-            <label for="sla_priority" class="input-label">កម្រិតអាទិភាព (SLA Priority)</label>
-            <select id="sla_priority" required class="select-field">
-                <option value="" class="bg-[#0f172a] text-white">-- សូមជ្រើសរើសកម្រិតអាទិភាព --</option>
-                <option value="High" class="bg-[#0f172a] text-red-500 font-bold">🔴 ខ្ពស់ (High)</option>
-                <option value="Medium" class="bg-[#0f172a] text-yellow-500 font-bold">🟡 មធ្យម (Medium)</option>
-                <option value="Low" class="bg-[#0f172a] text-gray-500 font-bold">⚫ ទាប (Low)</option>
-            </select>
-        </div>
-
-        <div class="flex flex-col">
-            <label for="description" class="input-label">ការពិពណ៌នាបន្ថែម (Description)</label>
-            <textarea id="description" placeholder="សូមរៀបរាប់ពីបញ្ហាបច្ចេកទេសនៅទីនេះ..." required class="textarea-field" rows="3"></textarea>
-        </div>
-
-        <button type="submit" id="submitBtn" class="submit-btn mt-2">
-            បញ្ជូនសំណើរ (Submit Ticket)
-        </button>
+        <button type="submit" id="submitBtn" class="submit-btn">Submit Ticket</button>
     </form>
 </div>
 
 <script>
-    // GitHub Action នឹងប្តូរពាក្យនេះទៅជា Token ពិតប្រាកដដោយស្វ័យប្រវត្តិ
-    const telegramBotToken = "8231578762:AAH7m8S-89m4uLzc90ZzDlgnDTa-CtDctn4";
-    const telegramChatId = "-1004411442816";
-
-    const issueTypeSelect = document.getElementById("issue_type");
-    const subCategoryArea = document.getElementById("sub_category_area");
-    const subIssueSelect = document.getElementById("sub_issue");
-
-    const subCategories = {
-        "Software": ["បញ្ហា Email / Outlook", "បញ្ហាប្រព័ន្ធ (Core Banking)", "បញ្ហា Windows", "ផ្សេងៗ (Software)"],
-        "Hardware": ["បញ្ហាម៉ាស៊ីនកុំព្យូទ័រ / ថ្ម", "បញ្ហាម៉ាស៊ីនព្រីន (Printer)", "បញ្ហា Network / Wi-Fi", "ផ្សេងៗ (Hardware)"]
-    };
-
-    issueTypeSelect.addEventListener("change", function() {
-        const selectedType = this.value;
-        if (selectedType && subCategories[selectedType]) {
-            subCategoryArea.classList.remove("hidden");
-            subIssueSelect.innerHTML = "";
-            subCategories[selectedType].forEach(item => {
-                let option = document.createElement("option");
-                option.value = item;
-                option.text = item;
-                option.className = "bg-[#0f172a]";
-                subIssueSelect.appendChild(option);
+    // Logic សម្រាប់ Custom Dropdown
+    document.querySelectorAll('.custom-select-wrapper').forEach(wrapper => {
+        const trigger = wrapper.querySelector('.select-trigger');
+        const options = wrapper.querySelector('.select-options');
+        trigger.addEventListener('click', () => options.classList.toggle('show'));
+        wrapper.querySelectorAll('.option').forEach(option => {
+            option.addEventListener('click', () => {
+                trigger.innerText = option.innerText;
+                wrapper.querySelector('input').value = option.dataset.value;
+                options.classList.remove('show');
             });
-        } else {
-            subCategoryArea.classList.add("hidden");
-            subIssueSelect.innerHTML = "";
-        }
-    });
-
-    document.getElementById('ticketForm').addEventListener('submit', function(event) {
-        event.preventDefault(); 
-        const submitBtn = document.getElementById('submitBtn');
-        const originalBtnText = submitBtn.innerText;
-        submitBtn.innerText = "កំពុងបញ្ជូន... ⏳";
-        submitBtn.disabled = true;
-
-        const staffId = document.getElementById("staff_id").value;
-        const name = document.getElementById("name").value;
-        const department = document.getElementById("department").value;
-        const phone = document.getElementById("phone").value;
-        const issueType = document.getElementById("issue_type").value;
-        const subIssue = document.getElementById("sub_issue").value || "មិនមាន";
-        const slaPriority = document.getElementById("sla_priority").value;
-        const description = document.getElementById("description").value;
-
-        let priorityIcon = "⚫";
-        if (slaPriority === "High") priorityIcon = "🔴";
-        if (slaPriority === "Medium") priorityIcon = "🟡";
-
-        const telegramText = 
-          `<b>Name:</b> ${name}  |  <b>ID:</b> ${staffId}\n` +
-          `<b>Contact:</b> ${phone}  |  <b>Dept:</b> ${department}\n` +
-          `🛠 <b>ISSUE DETAILS</b>\n` +
-          `<b>Category:</b> ${issueType} (${subIssue})\n` +
-          `<b>Priority:</b> ${priorityIcon} ${slaPriority}\n` +
-          `<b>Description:</b>\n` +
-          `<i>${description}</i>`;
-
-        fetch(`https://api.telegram.org/bot${telegramBotToken}/sendMessage`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ chat_id: telegramChatId, text: telegramText, parse_mode: 'HTML' })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if(data.ok) {
-                alert("✅ សំបុត្រ (Ticket) ត្រូវបានបញ្ជូនទៅកាន់ IT ដោយជោគជ័យ!");
-                document.getElementById('ticketForm').reset();
-                subCategoryArea.classList.add("hidden"); 
-            } else {
-                alert("❌ មានបញ្ហាក្នុងការបញ្ជូនទៅ Telegram: " + data.description);
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert("❌ មានបញ្ហាប្រព័ន្ធ Network មិនអាចទាក់ទងទៅ Telegram បានទេ។");
-        })
-        .finally(() => {
-            submitBtn.innerText = originalBtnText;
-            submitBtn.disabled = false;
         });
     });
 </script>

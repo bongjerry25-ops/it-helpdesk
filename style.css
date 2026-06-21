@@ -1,11 +1,10 @@
-/* បង្កើតផ្ទៃខាងក្រោយមានពន្លឺពណ៌ខៀវ និងបៃតងបែប Gradient ដើម្បីឱ្យកញ្ចក់លេចធ្លោ */
+/* ផ្ទៃខាងក្រោយ និងរចនាបថទូទៅ */
 body { 
     font-family: 'Kantumruy Pro', sans-serif; 
     background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f2027 100%);
     background-image: 
         radial-gradient(at 20% 30%, rgba(59, 130, 246, 0.15) 0, transparent 50%), 
         radial-gradient(at 80% 80%, rgba(0, 132, 68, 0.1) 0, transparent 50%);
-    background-color: #0f172a;
     color: white; 
     min-height: 100vh; 
     display: flex; 
@@ -15,7 +14,7 @@ body {
     padding: 20px; 
 }
 
-/* រចនាប្រអប់កញ្ចក់ថ្លា (Glass Effect Masterpiece) */
+/* កញ្ចក់ថ្លាសម្រាប់កុងតឺន័រ (Card Container) */
 .card-container { 
     background: rgba(30, 41, 59, 0.45); 
     backdrop-filter: blur(16px); 
@@ -28,9 +27,9 @@ body {
     box-shadow: 0 25px 45px rgba(0, 0, 0, 0.25); 
 }
 
-/* រចនា Logo ជារង្វង់មូលធំ និងច្បាស់ជាងមុន */
+/* រូប Logo ធំស្អាតកម្រិត Premium */
 .logo-box {
-    width: 110px; /* បង្កើនទំហំពីរ 85px មក 110px */
+    width: 110px;
     height: 110px;
     border-radius: 50%;
     background-color: rgba(255, 255, 255, 0.95); 
@@ -42,25 +41,10 @@ body {
     margin: 0 auto 15px auto;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
 }
+.logo-box img { width: 82%; height: auto; object-fit: contain; }
 
-.logo-box img { 
-    width: 82%; /* ពង្រីករូបភាពខាងក្នុងឱ្យមើលឃើញច្បាស់ល្អ */
-    height: auto;
-    object-fit: contain; 
-}
-
-/* អក្សរ Label ឱ្យស្រឡះភ្នែក */
-.input-label { 
-    display: block; 
-    color: #cbd5e1; 
-    font-size: 13.5px; 
-    font-weight: 500;
-    margin-bottom: 8px; 
-    text-align: left; 
-}
-
-/* ប្រអប់វាយអក្សរកញ្ចក់ */
-.input-field, .select-field, .textarea-field { 
+/* Input fields */
+.input-field { 
     width: 100%; 
     background: rgba(15, 23, 42, 0.4); 
     border: 1px solid rgba(255, 255, 255, 0.08); 
@@ -69,44 +53,49 @@ body {
     color: white; 
     font-size: 14px;
     outline: none; 
-    transition: all 0.3s ease; 
+    transition: 0.3s;
 }
+.input-field:focus { border-color: #3b82f6; background: rgba(15, 23, 42, 0.7); }
 
-.input-field::placeholder, .textarea-field::placeholder {
-    color: #64748b;
-}
-
-/* ពេលចុចវាយអក្សរ លោតពន្លឺខៀវ */
-.input-field:focus, .select-field:focus, .textarea-field:focus { 
-    background: rgba(15, 23, 42, 0.7);
-    border-color: rgba(59, 130, 246, 0.5); 
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15); 
-}
-
-/* ចំណុចជំហាន (Step Indicators) */
-.step-dot { 
-    width: 26px; 
-    height: 26px; 
-    border-radius: 50%; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    font-size: 12px; 
-    font-weight: 700; 
-}
-.step-active { 
-    background: linear-gradient(135deg, #008444 0%, #006333 100%);
+/* Custom Dropdown Styling (រចនាបថដូច App ធនាគារ) */
+.custom-select-wrapper { position: relative; width: 100%; user-select: none; }
+.select-trigger { 
+    background: rgba(15, 23, 42, 0.4); 
+    border: 1px solid rgba(255, 255, 255, 0.08); 
+    padding: 12px 15px; 
+    border-radius: 10px; 
     color: white; 
-    box-shadow: 0 0 15px rgba(0, 132, 68, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.3s;
 }
-.step-inactive { 
-    background: rgba(51, 65, 85, 0.5); 
-    color: #94a3b8; 
-    border: 1px solid rgba(255, 255, 255, 0.05);
+.select-trigger:hover { border-color: #3b82f6; }
+.select-options { 
+    display: none; 
+    position: absolute; 
+    width: 100%; 
+    background: #1e293b; 
+    border-radius: 10px; 
+    margin-top: 5px; 
+    z-index: 10; 
+    border: 1px solid #334155;
+    box-shadow: 0 10px 15px rgba(0,0,0,0.3);
 }
+.select-options.show { display: block; }
+.option { 
+    padding: 12px 15px; 
+    transition: 0.2s; 
+    cursor: pointer;
+    font-size: 14px;
+    border-bottom: 1px solid #334155;
+}
+.option:last-child { border-bottom: none; }
+.option:hover { background: #008444; color: white; }
 
-/* ប៊ូតុងបញ្ជូនបែប 3D Glass */
+/* ប៊ូតុង Submit */
 .submit-btn { 
     width: 100%; 
     background: linear-gradient(135deg, #008444 0%, #00522a 100%);
@@ -114,39 +103,15 @@ body {
     padding: 14px; 
     border-radius: 10px; 
     font-weight: 600; 
-    font-size: 15px;
-    letter-spacing: 0.5px;
+    border: none; 
     cursor: pointer; 
-    border: 1px solid rgba(255, 255, 255, 0.15); 
-    transition: all 0.3s ease; 
-    box-shadow: 0 8px 20px rgba(0, 132, 68, 0.3);
+    transition: 0.3s;
+    font-size: 15px;
 }
-.submit-btn:hover { 
-    transform: translateY(-2px);
-    box-shadow: 0 12px 25px rgba(0, 132, 68, 0.5);
-}
-.submit-btn:disabled {
-    background: rgba(71, 85, 105, 0.5);
-    color: #94a3b8;
-    cursor: not-allowed;
-    box-shadow: none;
-    transform: none;
-    border-color: transparent;
-}
-/* បន្ថែមនៅខាងក្រោមគេក្នុង style.css */
+.submit-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0, 132, 68, 0.3); }
+
+/* Responsive Mobile Support */
 @media (max-width: 640px) {
-    .card-container {
-        padding: 20px; /* កាត់បន្ថយគម្លាតនៅលើទូរស័ព្ទ */
-        border-radius: 15px;
-    }
-    .logo-box {
-        width: 70px; /* បង្រួម Logo បន្តិចនៅលើទូរស័ព្ទ */
-        height: 70px;
-    }
-    h2 {
-        font-size: 1.25rem; /* កាត់បន្ថយទំហំអក្សរចំណងជើង */
-    }
-    .grid {
-        gap: 12px; /* កាត់បន្ថយគម្លាតរវាងប្រអប់ */
-    }
+    .card-container { padding: 20px; }
+    .logo-box { width: 80px; height: 80px; }
 }
