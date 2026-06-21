@@ -51,17 +51,22 @@
         </div>
 
         <textarea placeholder="Describe your issue..." class="input-field w-full h-32"></textarea>
-        <label class="upload-btn">📎 Attach Screenshot / Error Log / Document</label>
-        <button type="submit" class="submit-btn">Submit Support Ticket</button>
-    </form>
-
-    <div class="mt-6 border-t border-slate-800 pt-4 flex justify-between text-xs text-slate-500">
-        <span>Status: <span class="text-green-500">● Online Support Team Available</span></span>
-        <span id="ticketDisplay"></span>
-    </div>
-</div>
+        <label class="upload-btn cursor-pointer transition-all hover:border-blue-500">
+    <input type="file" id="fileInput" class="hidden" multiple onchange="updateFileName(this)">
+    <span id="fileText">📎 Attach Screenshot / Document</span>
+</label>
 
 <script>
+    // មុខងារបង្ហាញឈ្មោះឯកសារពេល Upload ជាប់
+    function updateFileName(input) {
+        const fileText = document.getElementById('fileText');
+        if (input.files.length > 0) {
+            fileText.innerText = "✅ " + input.files[0].name;
+        } else {
+            fileText.innerText = "📎 Attach Screenshot / Document";
+        }
+    }
+</script>
     document.getElementById('ticketForm').addEventListener('submit', function(e) {
         e.preventDefault();
         const id = "IT-2026-" + Math.floor(1000 + Math.random() * 9000);
