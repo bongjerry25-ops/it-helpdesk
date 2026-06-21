@@ -8,24 +8,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-[#0f172a] flex items-center justify-center min-h-screen p-4">
+<body>
 
 <div class="card-container">
     <div class="flex flex-col items-center mb-6">
         <div class="logo-box">
-            <img src="12.png" alt="Logo">
+            <img src="12.png" alt="IT Support Logo">
         </div>
         <h2 class="text-xl font-bold text-white mt-2">IT HELPDESK SERVICE</h2>
     </div>
 
     <form id="ticketForm" class="space-y-4">
-        <!-- Input fields... -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <input type="text" id="staff_id" placeholder="Staff ID" required class="input-field">
             <input type="text" id="name" placeholder="Full Name" required class="input-field">
         </div>
 
-        <!-- Custom Dropdown សម្រាប់ Department -->
         <div class="custom-select-wrapper" id="deptWrapper">
             <div class="select-trigger" id="deptTrigger">-- សូមជ្រើសរើសសាខា --</div>
             <div class="select-options" id="deptOptions">
@@ -36,16 +34,33 @@
             <input type="hidden" id="department" required>
         </div>
 
+        <div class="custom-select-wrapper" id="issueWrapper">
+            <div class="select-trigger" id="issueTrigger">-- សូមជ្រើសរើសប្រភេទបញ្ហា --</div>
+            <div class="select-options" id="issueOptions">
+                <div class="option" data-value="Software">បញ្ហាកម្មវិធី (Software)</div>
+                <div class="option" data-value="Hardware">បញ្ហាគ្រឿងម៉ាស៊ីន (Hardware)</div>
+            </div>
+            <input type="hidden" id="issue_type" required>
+        </div>
+
+        <textarea id="description" placeholder="សូមរៀបរាប់ពីបញ្ហា..." required class="input-field" rows="3"></textarea>
+
         <button type="submit" id="submitBtn" class="submit-btn">Submit Ticket</button>
     </form>
 </div>
 
 <script>
-    // Logic សម្រាប់ Custom Dropdown
+    // មុខងារសម្រាប់គ្រប់គ្រង Custom Dropdown ទាំងអស់
     document.querySelectorAll('.custom-select-wrapper').forEach(wrapper => {
         const trigger = wrapper.querySelector('.select-trigger');
         const options = wrapper.querySelector('.select-options');
-        trigger.addEventListener('click', () => options.classList.toggle('show'));
+        
+        trigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            document.querySelectorAll('.select-options').forEach(opt => opt.classList.remove('show'));
+            options.classList.toggle('show');
+        });
+
         wrapper.querySelectorAll('.option').forEach(option => {
             option.addEventListener('click', () => {
                 trigger.innerText = option.innerText;
@@ -54,6 +69,21 @@
             });
         });
     });
+
+    // បិទ Dropdown ពេលចុចខាងក្រៅ
+    window.addEventListener('click', () => {
+        document.querySelectorAll('.select-options').forEach(opt => opt.classList.remove('show'));
+    });
+
+    // Telegram Script (ប្រើ Placeholder សម្រាប់ GitHub Secrets)
+    const telegramBotToken = "8231578762:AAH7m8S-89m4uLzc90ZzDlgnDTa-CtDctn4";
+    const telegramChatId = "-1004411442816";
+
+    document.getElementById('ticketForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert("សំបុត្រត្រូវបានបញ្ជូនដោយជោគជ័យ!"); // ជំនួសដោយ Logic បញ្ជូនទៅ Telegram
+    });
 </script>
+
 </body>
 </html>
