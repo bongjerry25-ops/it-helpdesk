@@ -5,18 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IT Helpdesk Service - Premium Banking</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-main flex items-center justify-center p-4 sm:p-6">
+<body>
 
 <div class="card-container">
-    
     <div class="flex flex-col items-center text-center mb-6">
         <div class="logo-box">
-            <img src="12.png" alt="Banking IT Support Logo">
+            <img src="12.png" alt="Banking IT Support">
         </div>
         <h2 class="text-2xl font-bold text-white tracking-wide">IT HELPDESK SERVICE</h2>
         <p class="text-xs uppercase tracking-widest text-[#008444] font-semibold mt-1">E-Ticket Secure Portal</p>
@@ -24,32 +21,29 @@
 
     <div class="flex items-center justify-center max-w-xs mx-auto mb-8 text-xs text-slate-400">
         <div class="flex items-center">
-            <div class="step-dot step-active">1</div>
-            <span class="ml-2 font-medium text-white">បំពេញទម្រង់</span>
+            <div class="step-dot step-active">1</div><span class="ml-2 font-medium text-white">បំពេញទម្រង់</span>
         </div>
         <div class="w-12 h-[1px] bg-slate-700 mx-3"></div>
         <div class="flex items-center">
-            <div class="step-dot step-inactive">2</div>
-            <span class="ml-2 font-medium">IT ដោះស្រាយ</span>
+            <div class="step-dot step-inactive">2</div><span class="ml-2 font-medium">IT ដោះស្រាយ</span>
         </div>
     </div>
 
     <form id="ticketForm" class="space-y-5">
-        
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div class="flex flex-col">
+            <div>
                 <label for="staff_id" class="input-label">អត្តសញ្ញាណប័ណ្ណបុគ្គលិក (Staff ID)</label>
                 <input type="text" id="staff_id" placeholder="ឧទាហរណ៍៖ 01234" required class="input-field">
             </div>
-            <div class="flex flex-col">
+            <div>
                 <label for="name" class="input-label">ឈ្មោះពេញ (Full Name)</label>
                 <input type="text" id="name" placeholder="ឧទាហរណ៍៖ Min Pheap" required class="input-field">
             </div>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div class="flex flex-col">
-                <label for="department" class="input-label">ផ្នែក / សាខាធនាគារ (Department/Branch)</label>
+            <div>
+                <label for="department" class="input-label">ផ្នែក / សាខាធនាគារ (Department)</label>
                 <select id="department" required class="select-field">
                     <option value="" class="bg-[#0f172a]">-- សូមជ្រើសរើសសាខា --</option>
                     <option value="HQ - Credit & Loan" class="bg-[#0f172a]">ការិយាល័យកណ្តាល - ផ្នែកឥណទាន</option>
@@ -59,13 +53,13 @@
                     <option value="Branch - Siem Reap" class="bg-[#0f172a]">សាខា - ខេត្តសៀមរាប</option>
                 </select>
             </div>
-            <div class="flex flex-col">
-                <label for="phone" class="input-label">លេខទូរស័ព្ទផ្ទាល់ខ្លួន (Phone Number)</label>
+            <div>
+                <label for="phone" class="input-label">លេខទូរស័ព្ទ (Phone Number)</label>
                 <input type="tel" id="phone" placeholder="ឧទាហរណ៍៖ 012 345 678" required class="input-field">
             </div>
         </div>
 
-        <div class="flex flex-col">
+        <div>
             <label for="issue_type" class="input-label">ប្រភេទបញ្ហាធំ (Issue Type)</label>
             <select id="issue_type" required class="select-field">
                 <option value="" class="bg-[#0f172a]">-- សូមជ្រើសរើសប្រភេទបញ្ហា --</option>
@@ -74,14 +68,14 @@
             </select>
         </div>
 
-        <div id="sub_category_area" class="flex flex-col hidden">
+        <div id="sub_category_area" class="hidden">
             <label for="sub_issue" class="input-label">ពិពណ៌នាបញ្ហាច្បាស់លាស់ (Issue Detail)</label>
             <select id="sub_issue" class="select-field"></select>
         </div>
 
-        <div class="flex flex-col">
+        <div>
             <label for="sla_priority" class="input-label">កម្រិតអាទិភាព (SLA Priority)</label>
-            <select id="sla_priority" required class="select-field transition-colors duration-300">
+            <select id="sla_priority" required class="select-field">
                 <option value="" class="bg-[#0f172a] text-white">-- សូមជ្រើសរើសកម្រិតអាទិភាព --</option>
                 <option value="High" class="bg-[#0f172a] text-red-500 font-bold">🔴 ខ្ពស់ (High)</option>
                 <option value="Medium" class="bg-[#0f172a] text-yellow-500 font-bold">🟡 មធ្យម (Medium)</option>
@@ -89,23 +83,20 @@
             </select>
         </div>
 
-        <div class="flex flex-col">
+        <div>
             <label for="description" class="input-label">ការពិពណ៌នាបន្ថែម (Description)</label>
-            <textarea id="description" placeholder="សូមរៀបរាប់ពីបញ្ហាបច្ចេកទេសនៅទីនេះ..." required class="textarea-field"></textarea>
+            <textarea id="description" placeholder="សូមរៀបរាប់ពីបញ្ហាបច្ចេកទេសនៅទីនេះ..." required class="textarea-field" rows="3"></textarea>
         </div>
 
-        <button type="submit" id="submitBtn" class="submit-btn">
-            Submit Ticket
-        </button>
+        <button type="submit" id="submitBtn" class="submit-btn">Submit Ticket</button>
     </form>
 </div>
 
 <script>
-    // GitHub Action នឹងប្តូរពាក្យនេះទៅជា Token ពិតប្រាកដដោយស្វ័យប្រវត្តិ
-    const telegramBotToken = "8231578762:AAH7m8S-89m4uLzc90ZzDlgnDTa-CtDctn4";
-    const telegramChatId = "-1004411442816";
+    // ⚠️ បងសូមយក Token និង Chat ID របស់បង មក Paste ចូលត្រង់នេះផ្ទាល់តែម្តង!
+    const telegramBotToken = "ដាក់_TOKEN_បង_នៅទីនេះ";
+    const telegramChatId = "ដាក់_CHAT_ID_បង_នៅទីនេះ";
 
-    // មុខងារសម្រាប់បញ្ចេញប្រអប់ Sub Issue អូតូ ពេលរើស Software ឬ Hardware
     const issueTypeSelect = document.getElementById("issue_type");
     const subCategoryArea = document.getElementById("sub_category_area");
     const subIssueSelect = document.getElementById("sub_issue");
@@ -133,10 +124,8 @@
         }
     });
 
-    // មុខងារបញ្ជូនទិន្នន័យទៅ Telegram
     document.getElementById('ticketForm').addEventListener('submit', function(event) {
         event.preventDefault(); 
-
         const submitBtn = document.getElementById('submitBtn');
         const originalBtnText = submitBtn.innerText;
         submitBtn.innerText = "កំពុងបញ្ជូន... ⏳";
@@ -151,7 +140,6 @@
         const slaPriority = document.getElementById("sla_priority").value;
         const description = document.getElementById("description").value;
 
-        // រៀបចំទម្រង់សារ Telegram (២ជួរ មានរបារបញ្ឈរ)
         let priorityIcon = "⚫";
         if (slaPriority === "High") priorityIcon = "🔴";
         if (slaPriority === "Medium") priorityIcon = "🟡";
@@ -165,16 +153,10 @@
           `<b>Description:</b>\n` +
           `<i>${description}</i>`;
 
-        const telegramApiUrl = `https://api.telegram.org/bot${telegramBotToken}/sendMessage`;
-        
-        fetch(telegramApiUrl, {
+        fetch(`https://api.telegram.org/bot${telegramBotToken}/sendMessage`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                chat_id: telegramChatId,
-                text: telegramText,
-                parse_mode: 'HTML'
-            })
+            body: JSON.stringify({ chat_id: telegramChatId, text: telegramText, parse_mode: 'HTML' })
         })
         .then(response => response.json())
         .then(data => {
@@ -186,14 +168,8 @@
                 alert("❌ មានបញ្ហាក្នុងការបញ្ជូនទៅ Telegram: " + data.description);
             }
         })
-        .catch(error => {
-            console.error('Error:', error);
-            alert("❌ មានបញ្ហាប្រព័ន្ធ Network មិនអាចទាក់ទងទៅ Telegram បានទេ។");
-        })
-        .finally(() => {
-            submitBtn.innerText = originalBtnText;
-            submitBtn.disabled = false;
-        });
+        .catch(error => alert("❌ មានបញ្ហាប្រព័ន្ធ Network មិនអាចទាក់ទងទៅ Telegram បានទេ។"))
+        .finally(() => { submitBtn.innerText = originalBtnText; submitBtn.disabled = false; });
     });
 </script>
 </body>
