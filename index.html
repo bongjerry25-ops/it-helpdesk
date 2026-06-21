@@ -3,204 +3,277 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IT Helpdesk Service - Premium Banking</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>IT Helpdesk Service</title>
+    <!-- នាំចូលពុម្ពអក្សរដិតស្អាតលំដាប់ Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body class="bg-main flex items-center justify-center p-4 sm:p-6">
-
-<div class="card-container">
+    <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:ital,wght@0,100..0,700;1,100..0,700&family=Koh+Santepheap:wght@100;300;400;700;900&display=swap" rel="stylesheet">
     
-    <div class="flex flex-col items-center text-center mb-6">
-        <div class="logo-box">
-            <img src="12.png" alt="Banking IT Support Logo">
+    <style>
+        :root {
+            --bg-color: #0b111e;
+            --card-bg: rgba(22, 32, 54, 0.8);
+            --primary-blue: #0ea5e9;
+            --primary-glow: rgba(14, 165, 233, 0.25);
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border-color: #2e3d56;
+        }
+
+        body {
+            font-family: 'Kantumruy Pro', 'Koh Santepheap', -apple-system, sans-serif;
+            background: radial-gradient(circle at top right, #1e1b4b 0%, var(--bg-color) 60%);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .form-container {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 35px 30px;
+            width: 100%;
+            max-width: 460px;
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5),
+                        0 0 50px -10px rgba(14, 165, 233, 0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .header-area {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header-area .icon-badge {
+            background: rgba(14, 165, 233, 0.1);
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            display: inline-flex;
+            padding: 12px;
+            border-radius: 50%;
+            margin-bottom: 12px;
+            box-shadow: 0 0 20px rgba(14, 165, 233, 0.2);
+        }
+
+        h2 {
+            margin: 0;
+            color: #ffffff;
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+
+        /* រចនាប្រអប់ Inputs ទាំងអស់ឱ្យស្មើគ្នា និងស្អាត */
+        input, select, textarea {
+            width: 100%;
+            padding: 14px 16px;
+            background-color: rgba(11, 17, 30, 0.7);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            color: var(--text-main);
+            font-size: 14px;
+            box-sizing: border-box;
+            font-family: inherit;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: #4b5563;
+        }
+
+        /* នៅពេលបុគ្គលិកចុចចំប្រអប់បញ្ចូលទិន្នន័យ (Focus) */
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            background-color: rgba(11, 17, 30, 0.9);
+            box-shadow: 0 0 0 4px var(--primary-glow);
+        }
+
+        select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2394a3b8'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            background-size: 16px;
+            padding-right: 40px;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 110px;
+            line-height: 1.5;
+        }
+
+        /* រចនាប៊ូតុង Submit ឱ្យមានសោភ័ណភាពខ្ពស់ */
+        button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+            border: none;
+            border-radius: 12px;
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 100%);
+            box-shadow: 0 6px 20px rgba(14, 165, 233, 0.4);
+            transform: translateY(-1px);
+        }
+
+        button:active {
+            transform: translateY(1px);
+            box-shadow: 0 3px 10px rgba(14, 165, 233, 0.2);
+        }
+
+        button:disabled {
+            background: #1e293b;
+            border: 1px solid #334155;
+            color: #64748b;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <div class="header-area">
+        <div class="icon-badge">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="%230ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 6V12L16 14" stroke="%230ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
         </div>
-        <h2 class="text-2xl font-bold text-white tracking-wide">IT HELPDESK SERVICE</h2>
-        <p class="text-xs uppercase tracking-widest text-[#008444] font-semibold mt-1">E-Ticket Secure Portal</p>
+        <h2>បង្កើត IT Ticket ថ្មី</h2>
     </div>
 
-    <div class="flex items-center justify-center max-w-xs mx-auto mb-8 text-xs text-slate-400">
-        <div class="flex items-center">
-            <div class="step-dot step-active">1</div>
-            <span class="ml-2 font-medium text-white">បំពេញទម្រង់</span>
-        </div>
-        <div class="w-12 h-[1px] bg-slate-700 mx-3"></div>
-        <div class="flex items-center">
-            <div class="step-dot step-inactive">2</div>
-            <span class="ml-2 font-medium">IT ដោះស្រាយ</span>
-        </div>
-    </div>
-
-    <form id="ticketForm" class="space-y-5">
-        
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div class="flex flex-col">
-                <label for="staff_id" class="input-label">អត្តសញ្ញាណប័ណ្ណបុគ្គលិក (Staff ID)</label>
-                <input type="text" id="staff_id" placeholder="ឧទាហរណ៍៖ 01234" required class="input-field">
-            </div>
-            <div class="flex flex-col">
-                <label for="name" class="input-label">ឈ្មោះពេញ (Full Name)</label>
-                <input type="text" id="name" placeholder="ឧទាហរណ៍៖ Min Pheap" required class="input-field">
-            </div>
+    <form id="ticketForm">
+        <!-- ឈ្មោះបុគ្គលិក -->
+        <div class="form-group">
+            <label for="name">ឈ្មោះបុគ្គលិក (Name)</label>
+            <input type="text" id="name" placeholder="ឧទាហរណ៍៖ សុខ ជា" required>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div class="flex flex-col">
-                <label for="department" class="input-label">ផ្នែក / សាខាធនាគារ (Department/Branch)</label>
-                <select id="department" required class="select-field">
-                    <option value="" class="bg-[#0f172a]">-- សូមជ្រើសរើសសាខា --</option>
-                    <option value="HQ - Credit & Loan" class="bg-[#0f172a]">ការិយាល័យកណ្តាល - ផ្នែកឥណទាន</option>
-                    <option value="HQ - Trade Finance" class="bg-[#0f172a]">ការិយាល័យកណ្តាល - ហិរញ្ញប្បទានពាណិជ្ជកម្ម</option>
-                    <option value="Branch - Tuol Kouk" class="bg-[#0f172a]">សាខា - ទួលគោក</option>
-                    <option value="Branch - Olympic" class="bg-[#0f172a]">សាខា - អូឡាំពិក</option>
-                    <option value="Branch - Siem Reap" class="bg-[#0f172a]">សាខា - ខេត្តសៀមរាប</option>
-                </select>
-            </div>
-            <div class="flex flex-col">
-                <label for="phone" class="input-label">លេខទូរស័ព្ទផ្ទាល់ខ្លួន (Phone Number)</label>
-                <input type="tel" id="phone" placeholder="ឧទាហរណ៍៖ 012345678" required class="input-field">
-            </div>
-        </div>
-
-        <div class="flex flex-col">
-            <label for="issue_type" class="input-label">ប្រភេទបញ្ហាធំ (Issue Type)</label>
-            <select id="issue_type" required class="select-field">
-                <option value="" class="bg-[#0f172a]">-- សូមជ្រើសរើសប្រភេទបញ្ហា --</option>
-                <option value="Software" class="bg-[#0f172a]">បញ្ហាកម្មវិធី / ប្រព័ន្ធធនាគារ (Software)</option>
-                <option value="Hardware" class="bg-[#0f172a]">បញ្ហាគ្រឿងម៉ាស៊ីន / ឧបករណ៍ (Hardware)</option>
+        <!-- ផ្នែក/នាយកដ្ឋាន -->
+        <div class="form-group">
+            <label for="department">ផ្នែក / នាយកដ្ឋាន (Department)</label>
+            <select id="department" required>
+                <option value="">-- សូមជ្រើសរើសផ្នែក --</option>
+                <option value="HR & Admin">ធនធានមនុស្ស (HR & Admin)</option>
+                <option value="Finance">ហិរញ្ញវត្ថុ (Finance)</option>
+                <option value="Operations">ប្រតិបត្តិការ (Operations)</option>
+                <option value="Sales & Marketing">លក់ និងទីផ្សារ (Sales & Marketing)</option>
+                <option value="Other">ផ្សេងៗ (Other)</option>
             </select>
         </div>
 
-        <div id="sub_category_area" class="flex flex-col hidden">
-            <label for="sub_issue" class="input-label">ពិពណ៌នាបញ្ហាច្បាស់លាស់ (Issue Detail)</label>
-            <select id="sub_issue" class="select-field"></select>
-        </div>
-
-        <div class="flex flex-col">
-            <label for="sla_priority" class="input-label">កម្រិតអាទិភាព (SLA Priority)</label>
-            <select id="sla_priority" required class="select-field transition-colors duration-300">
-                <option value="" class="bg-[#0f172a] text-white">-- សូមជ្រើសរើសកម្រិតអាទិភាព --</option>
-                <option value="High" class="bg-[#0f172a] text-red-500 font-bold">🔴 ខ្ពស់ (High)</option>
-                <option value="Medium" class="bg-[#0f172a] text-yellow-500 font-bold">🟡 មធ្យម (Medium)</option>
-                <option value="Low" class="bg-[#0f172a] text-gray-500 font-bold">⚫ ទាប (Low)</option>
+        <!-- ប្រភេទបញ្ហា -->
+        <div class="form-group">
+            <label for="issue_type">ប្រភេទបញ្ហា (Issue Type)</label>
+            <select id="issue_type" required>
+                <option value="">-- សូមជ្រើសរើសបញ្ហា --</option>
+                <option value="Hardware Issue">បញ្ហាគ្រឿងម៉ាស៊ីន (PC/Laptop/Printer)</option>
+                <option value="Software Issue">បញ្ហាកម្មវិធី (Email/Word/Excel/ERP)</option>
+                <option value="Network Issue">បញ្ហាអ៊ីនធឺណិត (Internet/Wi-Fi/VPN)</option>
+                <option value="Account/Password">គណនី ឬ ពាក្យសម្ងាត់ (Reset Password)</option>
             </select>
         </div>
 
-        <div class="flex flex-col">
-            <label for="description" class="input-label">ការពិពណ៌នាបន្ថែម (Description)</label>
-            <textarea id="description" placeholder="សូមរៀបរាប់ពីបញ្ហាបច្ចេកទេសនៅទីនេះ..." required class="textarea-field"></textarea>
+        <!-- ការពិពណ៌នាបន្ថែម -->
+        <div class="form-group">
+            <label for="description">ការពិពណ៌នាបន្ថែម (Description)</label>
+            <textarea id="description" placeholder="សូមរៀបរាប់ពីបញ្ហារបស់អ្នកនៅទីនេះ..." required></textarea>
         </div>
 
-        <button type="submit" id="submitBtn" class="submit-btn">
-            Submit Ticket
-        </button>
+        <!-- ប៊ូតុងផ្ញើ -->
+        <button type="submit" id="submitBtn">ផ្ញើព័ត៌មាន (Submit Ticket)</button>
     </form>
 </div>
 
 <script>
-    // GitHub Action នឹងប្តូរពាក្យនេះទៅជា Token ពិតប្រាកដ
-    const telegramBotToken = "8231578762:AAH7m8S-89m4uLzc90ZzDlgnDTa-CtDctn4";
-    const telegramChatId = "-1004411442816";
+    // 🔒 រក្សាកូដ PLACEHOLDER នេះដដែល ដើម្បីឱ្យ GitHub Actions ធ្វើការប្តូរស្វ័យប្រវត្ត
+    const BOT_TOKEN = "8231578762:AAH7m8S-89m4uLzc90ZzDlgnDTa-CtDctn4"; 
+    const CHAT_ID = "-1004411442816"; 
 
-    // មុខងារសម្រាប់បញ្ចេញប្រអប់ Sub Issue អូតូ ពេលរើស Software ឬ Hardware
-    const issueTypeSelect = document.getElementById("issue_type");
-    const subCategoryArea = document.getElementById("sub_category_area");
-    const subIssueSelect = document.getElementById("sub_issue");
+    document.getElementById("ticketForm").addEventListener("submit", function(e) {
+        e.preventDefault();
 
-    const subCategories = {
-        "Software": ["បញ្ហា Email / Outlook", "បញ្ហាប្រព័ន្ធ (Core Banking)", "បញ្ហា Windows", "ផ្សេងៗ (Software)"],
-        "Hardware": ["បញ្ហាម៉ាស៊ីនកុំព្យូទ័រ / ថ្ម", "បញ្ហាម៉ាស៊ីនព្រីន (Printer)", "បញ្ហា Network / Wi-Fi", "ផ្សេងៗ (Hardware)"]
-    };
+        const btn = document.getElementById("submitBtn");
+        btn.disabled = true;
+        btn.innerText = "កំពុងផ្ញើព័ត៌មាន...";
 
-    issueTypeSelect.addEventListener("change", function() {
-        const selectedType = this.value;
-        if (selectedType && subCategories[selectedType]) {
-            subCategoryArea.classList.remove("hidden");
-            subIssueSelect.innerHTML = "";
-            subCategories[selectedType].forEach(item => {
-                let option = document.createElement("option");
-                option.value = item;
-                option.text = item;
-                option.className = "bg-[#0f172a]";
-                subIssueSelect.appendChild(option);
-            });
-        } else {
-            subCategoryArea.classList.add("hidden");
-            subIssueSelect.innerHTML = "";
-        }
-    });
-
-    // មុខងារបញ្ជូនទិន្នន័យទៅ Telegram
-    document.getElementById('ticketForm').addEventListener('submit', function(event) {
-        event.preventDefault(); 
-
-        const submitBtn = document.getElementById('submitBtn');
-        const originalBtnText = submitBtn.innerText;
-        submitBtn.innerText = "កំពុងបញ្ជូន... ⏳";
-        submitBtn.disabled = true;
-
-        const staffId = document.getElementById("staff_id").value;
         const name = document.getElementById("name").value;
-        const department = document.getElementById("department").value;
-        const phone = document.getElementById("phone").value;
-        const issueType = document.getElementById("issue_type").value;
-        const subIssue = document.getElementById("sub_issue").value || "មិនមាន";
-        const slaPriority = document.getElementById("sla_priority").value;
-        const description = document.getElementById("description").value;
+        const dept = document.getElementById("department").value;
+        const issue = document.getElementById("issue_type").value;
+        const desc = document.getElementById("description").value;
 
-        // រៀបចំទម្រង់សារ
-        let priorityIcon = "⚫";
-        if (slaPriority === "High") priorityIcon = "🔴";
-        if (slaPriority === "Medium") priorityIcon = "🟡";
+        const messageText = `🎯 <b>ទទួលបាន IT Ticket ថ្មី (តាមរយៈ QR)</b>\n` +
+                            `---------------------------\n` +
+                            `👤 <b>ឈ្មោះបុគ្គលិក:</b> ${name}\n` +
+                            `🏢 <b>ផ្នែក/Dept:</b> ${dept}\n` +
+                            `🛠️ <b>ប្រភេទបញ្ហា:</b> ${issue}\n` +
+                            `📝 <b>ការពិពណ៌នា:</b> ${desc}\n` +
+                            `---------------------------\n` +
+                            `⚡ <i>សូមក្រុមការងារ IT មេត្តាពិនិត្យជូន!</i>`;
 
-        const telegramText = 
-          `🚨 <b>NEW IT SUPPORT TICKET</b> 🚨\n` +
-          `━━━━━━━━━━━━━━━━━━━━\n` +
-          `👤 <b>USER INFORMATION</b>\n` +
-          `▪️ <b>Name:</b> ${name}\n` +
-          `▪️ <b>Staff ID:</b> <code>${staffId}</code>\n` +
-          `▪️ <b>Contact:</b> <code>${phone}</code>\n` +
-          `▪️ <b>Department:</b> ${department}\n\n` +
-          `🛠 <b>ISSUE DETAILS</b>\n` +
-          `▪️ <b>Category:</b> ${issueType} (${subIssue})\n` +
-          `▪️ <b>Priority:</b> ${priorityIcon} ${slaPriority}\n` +
-          `▪️ <b>Description:</b>\n` +
-          `💬 <i>${description}</i>\n` +
-          `━━━━━━━━━━━━━━━━━━━━`;
-
-        const telegramApiUrl = `https://api.telegram.org/bot${telegramBotToken}/sendMessage`;
+        const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
         
-        fetch(telegramApiUrl, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+        fetch(url, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-                chat_id: telegramChatId,
-                text: telegramText,
-                parse_mode: 'HTML'
+                chat_id: CHAT_ID,
+                text: messageText,
+                parse_mode: "HTML"
             })
         })
-        .then(response => response.json())
-        .then(data => {
-            if(data.ok) {
-                alert("✅ សំបុត្រ (Ticket) ត្រូវបានបញ្ជូនទៅកាន់ IT ដោយជោគជ័យ!");
-                document.getElementById('ticketForm').reset();
-                subCategoryArea.classList.add("hidden"); 
+        .then(response => {
+            if(response.ok) {
+                alert("🎉 សំបុត្រកិច្ចការ (Ticket) របស់អ្នកត្រូវបានផ្ញើជូនក្រុមការងារ IT រួចរាល់ហើយ!");
+                document.getElementById("ticketForm").reset();
             } else {
-                alert("❌ មានបញ្ហាក្នុងការបញ្ជូនទៅ Telegram: " + data.description);
+                alert("ការផ្ញើបរាជ័យ! សូមពិនិត្យមើលការកំណត់ទិន្នន័យសម្ងាត់ (Secrets) លើ GitHub ឡើងវិញ។");
             }
         })
         .catch(error => {
-            console.error('Error:', error);
-            alert("❌ មានបញ្ហាប្រព័ន្ធ Network មិនអាចទាក់ទងទៅ Telegram បានទេ។");
+            alert("មានបញ្ហាបច្គេកទេស៖ " + error);
         })
         .finally(() => {
-            submitBtn.innerText = originalBtnText;
-            submitBtn.disabled = false;
+            btn.disabled = false;
+            btn.innerText = "ផ្ញើព័ត៌មាន (Submit Ticket)";
         });
     });
 </script>
+
 </body>
 </html>
