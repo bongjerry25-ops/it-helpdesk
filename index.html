@@ -19,7 +19,6 @@
             <img src="12.png" alt="Banking IT Support Logo">
         </div>
         <h2 class="text-2xl font-bold text-white tracking-wide">IT HELPDESK SERVICE</h2>
-        <!-- រកមើលជួរនេះក្នុង index.html រួចប្តូរអក្សរពណ៌មាសមកជាពណ៌បៃតង text-[#008444] -->
         <p class="text-xs uppercase tracking-widest text-[#008444] font-semibold mt-1">E-Ticket Secure Portal</p>
     </div>
 
@@ -80,7 +79,6 @@
             <select id="sub_issue" class="select-field"></select>
         </div>
 
-        <!-- Row 4.5: SLA Priority (កម្រិតអាទិភាព) -->
         <div class="flex flex-col">
             <label for="sla_priority" class="input-label">កម្រិតអាទិភាព (SLA Priority)</label>
             <select id="sla_priority" required class="select-field transition-colors duration-300">
@@ -97,11 +95,112 @@
         </div>
 
         <button type="submit" id="submitBtn" class="submit-btn">
-            Summit Ticket
+            Submit Ticket
         </button>
     </form>
 </div>
 
-<script src="app.js"></script>
+<script>
+    // GitHub Action នឹងប្តូរពាក្យនេះទៅជា Token ពិតប្រាកដ
+    const telegramBotToken = "8231578762:AAH7m8S-89m4uLzc90ZzDlgnDTa-CtDctn4";
+    const telegramChatId = "-1004411442816";
+
+    // មុខងារសម្រាប់បញ្ចេញប្រអប់ Sub Issue អូតូ ពេលរើស Software ឬ Hardware
+    const issueTypeSelect = document.getElementById("issue_type");
+    const subCategoryArea = document.getElementById("sub_category_area");
+    const subIssueSelect = document.getElementById("sub_issue");
+
+    const subCategories = {
+        "Software": ["បញ្ហា Email / Outlook", "បញ្ហាប្រព័ន្ធ (Core Banking)", "បញ្ហា Windows", "ផ្សេងៗ (Software)"],
+        "Hardware": ["បញ្ហាម៉ាស៊ីនកុំព្យូទ័រ / ថ្ម", "បញ្ហាម៉ាស៊ីនព្រីន (Printer)", "បញ្ហា Network / Wi-Fi", "ផ្សេងៗ (Hardware)"]
+    };
+
+    issueTypeSelect.addEventListener("change", function() {
+        const selectedType = this.value;
+        if (selectedType && subCategories[selectedType]) {
+            subCategoryArea.classList.remove("hidden");
+            subIssueSelect.innerHTML = "";
+            subCategories[selectedType].forEach(item => {
+                let option = document.createElement("option");
+                option.value = item;
+                option.text = item;
+                option.className = "bg-[#0f172a]";
+                subIssueSelect.appendChild(option);
+            });
+        } else {
+            subCategoryArea.classList.add("hidden");
+            subIssueSelect.innerHTML = "";
+        }
+    });
+
+    // មុខងារបញ្ជូនទិន្នន័យទៅ Telegram
+    document.getElementById('ticketForm').addEventListener('submit', function(event) {
+        event.preventDefault(); 
+
+        const submitBtn = document.getElementById('submitBtn');
+        const originalBtnText = submitBtn.innerText;
+        submitBtn.innerText = "កំពុងបញ្ជូន... ⏳";
+        submitBtn.disabled = true;
+
+        const staffId = document.getElementById("staff_id").value;
+        const name = document.getElementById("name").value;
+        const department = document.getElementById("department").value;
+        const phone = document.getElementById("phone").value;
+        const issueType = document.getElementById("issue_type").value;
+        const subIssue = document.getElementById("sub_issue").value || "មិនមាន";
+        const slaPriority = document.getElementById("sla_priority").value;
+        const description = document.getElementById("description").value;
+
+        // រៀបចំទម្រង់សារ
+        let priorityIcon = "⚫";
+        if (slaPriority === "High") priorityIcon = "🔴";
+        if (slaPriority === "Medium") priorityIcon = "🟡";
+
+        const telegramText = 
+          `🚨 <b>NEW IT SUPPORT TICKET</b> 🚨\n` +
+          `━━━━━━━━━━━━━━━━━━━━\n` +
+          `👤 <b>USER INFORMATION</b>\n` +
+          `▪️ <b>Name:</b> ${name}\n` +
+          `▪️ <b>Staff ID:</b> <code>${staffId}</code>\n` +
+          `▪️ <b>Contact:</b> <code>${phone}</code>\n` +
+          `▪️ <b>Department:</b> ${department}\n\n` +
+          `🛠 <b>ISSUE DETAILS</b>\n` +
+          `▪️ <b>Category:</b> ${issueType} (${subIssue})\n` +
+          `▪️ <b>Priority:</b> ${priorityIcon} ${slaPriority}\n` +
+          `▪️ <b>Description:</b>\n` +
+          `💬 <i>${description}</i>\n` +
+          `━━━━━━━━━━━━━━━━━━━━`;
+
+        const telegramApiUrl = `https://api.telegram.org/bot${telegramBotToken}/sendMessage`;
+        
+        fetch(telegramApiUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                chat_id: telegramChatId,
+                text: telegramText,
+                parse_mode: 'HTML'
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data.ok) {
+                alert("✅ សំបុត្រ (Ticket) ត្រូវបានបញ្ជូនទៅកាន់ IT ដោយជោគជ័យ!");
+                document.getElementById('ticketForm').reset();
+                subCategoryArea.classList.add("hidden"); 
+            } else {
+                alert("❌ មានបញ្ហាក្នុងការបញ្ជូនទៅ Telegram: " + data.description);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert("❌ មានបញ្ហាប្រព័ន្ធ Network មិនអាចទាក់ទងទៅ Telegram បានទេ។");
+        })
+        .finally(() => {
+            submitBtn.innerText = originalBtnText;
+            submitBtn.disabled = false;
+        });
+    });
+</script>
 </body>
 </html>
