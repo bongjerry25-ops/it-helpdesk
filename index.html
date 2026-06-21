@@ -3,46 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IT Helpdesk Service - Premium Banking</title>
+    <title>IT Helpdesk - Premium Portal</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="bg-[#0f172a] flex items-center justify-center min-h-screen p-4 sm:p-6">
 
 <div class="card-container">
-    <div class="flex flex-col items-center text-center mb-6">
+    
+    <div class="flex flex-col items-center text-center mb-8">
         <div class="logo-box">
-            <img src="12.png" alt="Banking IT Support">
+            <img src="12.png" alt="IT Support Logo">
         </div>
-        <h2 class="text-2xl font-bold text-white tracking-wide">IT HELPDESK SERVICE</h2>
+        <h2 class="text-2xl font-bold text-white tracking-wide mt-3">IT HELPDESK SERVICE</h2>
         <p class="text-xs uppercase tracking-widest text-[#008444] font-semibold mt-1">E-Ticket Secure Portal</p>
     </div>
 
     <div class="flex items-center justify-center max-w-xs mx-auto mb-8 text-xs text-slate-400">
         <div class="flex items-center">
-            <div class="step-dot step-active">1</div><span class="ml-2 font-medium text-white">បំពេញទម្រង់</span>
+            <div class="step-dot step-active">1</div>
+            <span class="ml-2 font-medium text-white">បំពេញទម្រង់</span>
         </div>
         <div class="w-12 h-[1px] bg-slate-700 mx-3"></div>
         <div class="flex items-center">
-            <div class="step-dot step-inactive">2</div><span class="ml-2 font-medium">IT ដោះស្រាយ</span>
+            <div class="step-dot step-inactive">2</div>
+            <span class="ml-2 font-medium">IT ដោះស្រាយ</span>
         </div>
     </div>
 
     <form id="ticketForm" class="space-y-5">
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div class="flex flex-col">
                 <label for="staff_id" class="input-label">អត្តសញ្ញាណប័ណ្ណបុគ្គលិក (Staff ID)</label>
                 <input type="text" id="staff_id" placeholder="ឧទាហរណ៍៖ 01234" required class="input-field">
             </div>
-            <div>
+            <div class="flex flex-col">
                 <label for="name" class="input-label">ឈ្មោះពេញ (Full Name)</label>
                 <input type="text" id="name" placeholder="ឧទាហរណ៍៖ Min Pheap" required class="input-field">
             </div>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div class="flex flex-col">
                 <label for="department" class="input-label">ផ្នែក / សាខាធនាគារ (Department)</label>
                 <select id="department" required class="select-field">
                     <option value="" class="bg-[#0f172a]">-- សូមជ្រើសរើសសាខា --</option>
@@ -53,13 +59,13 @@
                     <option value="Branch - Siem Reap" class="bg-[#0f172a]">សាខា - ខេត្តសៀមរាប</option>
                 </select>
             </div>
-            <div>
+            <div class="flex flex-col">
                 <label for="phone" class="input-label">លេខទូរស័ព្ទ (Phone Number)</label>
                 <input type="tel" id="phone" placeholder="ឧទាហរណ៍៖ 012 345 678" required class="input-field">
             </div>
         </div>
 
-        <div>
+        <div class="flex flex-col">
             <label for="issue_type" class="input-label">ប្រភេទបញ្ហាធំ (Issue Type)</label>
             <select id="issue_type" required class="select-field">
                 <option value="" class="bg-[#0f172a]">-- សូមជ្រើសរើសប្រភេទបញ្ហា --</option>
@@ -68,12 +74,12 @@
             </select>
         </div>
 
-        <div id="sub_category_area" class="hidden">
+        <div id="sub_category_area" class="flex flex-col hidden transition-all duration-300">
             <label for="sub_issue" class="input-label">ពិពណ៌នាបញ្ហាច្បាស់លាស់ (Issue Detail)</label>
             <select id="sub_issue" class="select-field"></select>
         </div>
 
-        <div>
+        <div class="flex flex-col">
             <label for="sla_priority" class="input-label">កម្រិតអាទិភាព (SLA Priority)</label>
             <select id="sla_priority" required class="select-field">
                 <option value="" class="bg-[#0f172a] text-white">-- សូមជ្រើសរើសកម្រិតអាទិភាព --</option>
@@ -83,17 +89,19 @@
             </select>
         </div>
 
-        <div>
+        <div class="flex flex-col">
             <label for="description" class="input-label">ការពិពណ៌នាបន្ថែម (Description)</label>
             <textarea id="description" placeholder="សូមរៀបរាប់ពីបញ្ហាបច្ចេកទេសនៅទីនេះ..." required class="textarea-field" rows="3"></textarea>
         </div>
 
-        <button type="submit" id="submitBtn" class="submit-btn">Submit Ticket</button>
+        <button type="submit" id="submitBtn" class="submit-btn mt-2">
+            បញ្ជូនសំណើរ (Submit Ticket)
+        </button>
     </form>
 </div>
 
 <script>
-    // ម៉ាស៊ីន GitHub Action នឹងប្តូរពាក្យនេះទៅជា Token ពិតប្រាកដពេលវា Deploy
+    // GitHub Action នឹងប្តូរពាក្យនេះទៅជា Token ពិតប្រាកដដោយស្វ័យប្រវត្តិ
     const telegramBotToken = "TELEGRAM_BOT_TOKEN_PLACEHOLDER";
     const telegramChatId = "TELEGRAM_CHAT_ID_PLACEHOLDER";
 
@@ -168,8 +176,14 @@
                 alert("❌ មានបញ្ហាក្នុងការបញ្ជូនទៅ Telegram: " + data.description);
             }
         })
-        .catch(error => alert("❌ មានបញ្ហាប្រព័ន្ធ Network មិនអាចទាក់ទងទៅ Telegram បានទេ។"))
-        .finally(() => { submitBtn.innerText = originalBtnText; submitBtn.disabled = false; });
+        .catch(error => {
+            console.error('Error:', error);
+            alert("❌ មានបញ្ហាប្រព័ន្ធ Network មិនអាចទាក់ទងទៅ Telegram បានទេ។");
+        })
+        .finally(() => {
+            submitBtn.innerText = originalBtnText;
+            submitBtn.disabled = false;
+        });
     });
 </script>
 </body>
