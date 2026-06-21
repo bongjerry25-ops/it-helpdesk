@@ -1,73 +1,207 @@
 <!DOCTYPE html>
-<html lang="km">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IT Enterprise Helpdesk</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IT Helpdesk Portal</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
-<body class="bg-slate-950 p-4 md:p-10">
+<body>
 
-<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 max-w-4xl mx-auto">
-    <div class="stat-card"><h3>128</h3><p>Today</p></div>
-    <div class="stat-card"><h3>12</h3><p>Open</p></div>
-    <div class="stat-card"><h3>98</h3><p>Closed</p></div>
-    <div class="stat-card"><h3>94%</h3><p>SLA</p></div>
-</div>
+<div class="container">
 
-<div class="card-container max-w-2xl mx-auto">
-    <div class="text-center mb-6">
-        <div class="logo-box"><img src="12.png" alt="Logo"></div>
-        <h1 class="text-2xl font-bold text-white mt-2">IT HELPDESK PORTAL</h1>
-        <p class="text-blue-400 text-sm">Fast • Secure • Professional Support</p>
+    <!-- Dashboard Cards -->
+    <div class="dashboard">
+
+        <div class="card stat">
+            <i class="fa-solid fa-folder-open"></i>
+            <h2>12</h2>
+            <p>Open Tickets</p>
+        </div>
+
+        <div class="card stat">
+            <i class="fa-solid fa-ticket"></i>
+            <h2>45</h2>
+            <p>Today's Tickets</p>
+        </div>
+
+        <div class="card stat">
+            <i class="fa-solid fa-clock"></i>
+            <h2>98%</h2>
+            <p>SLA Compliance</p>
+        </div>
+
     </div>
 
-    <form id="ticketForm" class="space-y-4">
-        <div class="grid grid-cols-2 gap-4">
-            <input type="text" id="staff_id" placeholder="Staff ID" class="input-field" required>
-            <input type="text" id="full_name" placeholder="Full Name" class="input-field" required>
-        </div>
-        <select class="input-field w-full">
-            <option>🏢 Branch / Department ▼</option>
-        </select>
-        
-        <h2 class="text-slate-400 text-sm font-bold uppercase mt-4">Ticket Information</h2>
-        <select id="category" class="input-field w-full">
-            <option>📂 Category ▼</option>
-        </select>
-        <select id="issue_type" class="input-field w-full">
-            <option>⚙️ Issue Type ▼</option>
-        </select>
+    <!-- Main Form -->
+    <div class="helpdesk-card">
 
-        <div class="p-4 bg-slate-800/30 rounded-xl border border-slate-700">
-            <label class="text-slate-400 text-xs">PRIORITY</label>
-            <div class="flex gap-2 mt-2">
-                <label class="priority-radio"><input type="radio" name="prio" value="low"> Low</label>
-                <label class="priority-radio"><input type="radio" name="prio" value="med"> Med</label>
-                <label class="priority-radio"><input type="radio" name="prio" value="high"> High</label>
-                <label class="priority-radio"><input type="radio" name="prio" value="crit"> Crit</label>
+        <div class="header">
+
+            <div class="logo">
+                <img src="logo.png" alt="logo">
             </div>
+
+            <h1>IT HELPDESK PORTAL</h1>
+
+            <p>Fast • Secure • Professional Support</p>
+
         </div>
 
-        <textarea placeholder="Describe your issue..." class="input-field w-full h-32"></textarea>
-        <label class="upload-btn">📎 Attach Screenshot / Error Log / Document</label>
-        <button type="submit" class="submit-btn">Submit Support Ticket</button>
-    </form>
+        <!-- User Info -->
 
-    <div class="mt-6 border-t border-slate-800 pt-4 flex justify-between text-xs text-slate-500">
-        <span>Status: <span class="text-green-500">● Online Support Team Available</span></span>
-        <span id="ticketDisplay"></span>
+        <div class="section-title">
+            USER INFORMATION
+        </div>
+
+        <div class="row">
+            <input type="text" placeholder="Staff ID">
+            <input type="text" placeholder="Full Name">
+        </div>
+
+        <select>
+            <option>🏢 Branch / Department</option>
+            <option>Head Office</option>
+            <option>Phnom Penh</option>
+            <option>Siem Reap</option>
+        </select>
+
+        <!-- Ticket Information -->
+
+        <div class="section-title">
+            TICKET INFORMATION
+        </div>
+
+        <select>
+            <option>📂 Category</option>
+            <option>Software Issue</option>
+            <option>Hardware Issue</option>
+            <option>Network Issue</option>
+            <option>Account Issue</option>
+        </select>
+
+        <select>
+            <option>⚙ Issue Type</option>
+            <option>Microsoft Teams</option>
+            <option>Microsoft Outlook</option>
+            <option>Printer</option>
+            <option>Internet</option>
+            <option>VPN</option>
+        </select>
+
+        <!-- Priority -->
+
+        <div class="priority-box">
+
+            <span class="label">PRIORITY</span>
+
+            <div class="priority-grid">
+
+                <button class="priority low">Low</button>
+
+                <button class="priority medium">Medium</button>
+
+                <button class="priority high">High</button>
+
+                <button class="priority critical">Critical</button>
+
+            </div>
+
+        </div>
+
+        <!-- Description -->
+
+        <textarea placeholder="Describe your issue..."></textarea>
+
+        <!-- Upload -->
+
+        <div class="upload-area">
+
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+
+            <p>
+                Drag & Drop Screenshot
+            </p>
+
+            <span>
+                or click to upload
+            </span>
+
+        </div>
+
+        <!-- SLA -->
+
+        <div class="sla-card">
+
+            <h3>SLA Response Time</h3>
+
+            <div>🟢 Low - 24 Hours</div>
+            <div>🔵 Medium - 8 Hours</div>
+            <div>🟠 High - 4 Hours</div>
+            <div>🔴 Critical - 1 Hour</div>
+
+        </div>
+
+        <!-- Summary -->
+
+        <div class="summary-card">
+
+            <h3>Ticket Summary</h3>
+
+            <p>Estimated Response Time: 2 Hours</p>
+
+        </div>
+
+        <button class="submit-btn">
+            🚀 Create Ticket
+        </button>
+
+        <!-- Recent Tickets -->
+
+        <div class="recent">
+
+            <h3>Recent Tickets</h3>
+
+            <div class="ticket-row">
+                #INC-2026-1001
+                <span class="open">Open</span>
+            </div>
+
+            <div class="ticket-row">
+                #INC-2026-1002
+                <span class="progress">In Progress</span>
+            </div>
+
+            <div class="ticket-row">
+                #INC-2026-1003
+                <span class="closed">Closed</span>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+
+        <div class="footer-status">
+
+            <div>
+                ● 5 Technicians Available
+            </div>
+
+            <div>
+                Average Response 15 Minutes
+            </div>
+
+            <div class="online">
+                ● Support Team Online
+            </div>
+
+        </div>
+
     </div>
+
 </div>
 
-<script>
-    document.getElementById('ticketForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const id = "IT-2026-" + Math.floor(1000 + Math.random() * 9000);
-        alert("Ticket Created Successfully!\nTicket ID: " + id);
-        document.getElementById('ticketDisplay').innerText = "Last Ticket: " + id;
-    });
-</script>
 </body>
 </html>
