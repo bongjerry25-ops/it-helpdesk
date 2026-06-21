@@ -1,0 +1,69 @@
+body { 
+    font-family: 'Kantumruy Pro', sans-serif; 
+    background-color: #0f172a; 
+    color: white; 
+    min-height: 100vh; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    margin: 0; 
+    padding: 20px; 
+}
+.card-container { 
+    background-color: #1e293b; 
+    border-radius: 16px; 
+    padding: 30px; 
+    width: 100%; 
+    max-width: 750px; 
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5); 
+}
+.logo-box img { 
+    max-width: 90px; 
+    margin: 0 auto 10px; 
+}
+.input-label { 
+    display: block; 
+    color: #94a3b8; 
+    font-size: 14px; 
+    margin-bottom: 8px; 
+    text-align: left; 
+}
+.input-field, .select-field, .textarea-field { 
+    width: 100%; 
+    background-color: #0f172a; 
+    border: 1px solid #334155; 
+    border-radius: 8px; 
+    padding: 12px; 
+    color: white; 
+    outline: none; 
+    transition: 0.3s; 
+}
+.input-field:focus, .select-field:focus, .textarea-field:focus { 
+    border-color: #008444; 
+    box-shadow: 0 0 0 2px rgba(0, 132, 68, 0.2); 
+}
+.step-dot { 
+    width: 24px; 
+    height: 24px; 
+    border-radius: 50%; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-size: 12px; 
+    font-weight: bold; 
+}
+.step-active { background-color: #008444; color: white; }
+.step-inactive { background-color: #334155; color: #94a3b8; }
+.submit-btn { 
+    width: 100%; 
+    background-color: #008444; 
+    color: white; 
+    padding: 14px; 
+    border-radius: 8px; 
+    font-weight: bold; 
+    margin-top: 20px; 
+    cursor: pointer; 
+    border: none; 
+    transition: 0.3s; 
+}
+.submit-btn:hover { background-color: #006333; }
