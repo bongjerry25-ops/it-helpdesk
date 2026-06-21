@@ -1,0 +1,140 @@
+body {
+    font-family: 'Kantumruy Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* ផ្ទៃខាងក្រោយបែបធនាគារលំដាប់ខ្ពស់ (Deep Navy & Emerald Glow) */
+.bg-main {
+    background-color: #060b16;
+    background-image: radial-gradient(circle at top right, #0a1f16 0%, #060b16 70%);
+    min-height: 100vh;
+}
+
+/* ផ្ទាំង Form បែបកញ្ចក់ថ្លា ព័ទ្ធខ្សែបន្ទាត់បៃតងស្រាល (Banking Emerald Border) */
+.card-container {
+    background-color: rgba(15, 23, 42, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 132, 68, 0.25); /* គែមពណ៌បៃតងធនាគារព្រិលៗ */
+    border-radius: 1.5rem;
+    padding: 2.5rem 2rem;
+    width: 100%;
+    max-width: 44rem;
+    box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.7), 
+                0 0 50px -10px rgba(0, 132, 68, 0.1);
+}
+
+/* ឡូហ្គោ Badge រង្វង់មូលព័ទ្ធគែមបៃតង (Emerald Circular Badge) */
+.logo-box {
+    width: 7rem;
+    height: 7rem;
+    margin-bottom: 1.25rem;
+    background: #ffffff;
+    border-radius: 9999px;
+    padding: 0.5rem;
+    border: 3px solid #008444; /* រង្វង់គែមបៃតងធនាគារច្បាស់ៗ */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 132, 68, 0.2);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.logo-box:hover {
+    transform: scale(1.03) rotate(5deg);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), 0 0 30px rgba(0, 132, 68, 0.4);
+}
+
+/* របារស្ថានភាព Timeline (Steps Indicator) */
+.step-dot {
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+.step-active {
+    background: linear-gradient(135deg, #008444 0%, #005c2f 100%);
+    color: #ffffff;
+    box-shadow: 0 0 15px rgba(0, 132, 68, 0.4);
+}
+.step-inactive {
+    background-color: #1e293b;
+    color: #64748b;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ស្លាកអក្សរ */
+.input-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #94a3b8;
+    letter-spacing: 0.025em;
+    margin-bottom: 0.5rem;
+}
+
+/* ប្រអប់បញ្ចូលទិន្នន័យ */
+.input-field, .select-field, .textarea-field {
+    width: 100%;
+    padding: 0.85rem 1.15rem;
+    background-color: rgba(6, 11, 22, 0.6);
+    border: 1px solid #1e293b;
+    border-radius: 0.75rem;
+    font-size: 0.9rem;
+    color: #f8fafc;
+    transition: all 0.3s ease;
+}
+
+.input-field::placeholder, .textarea-field::placeholder {
+    color: #334155;
+}
+
+/* Focus State លោតពណ៌បៃតងធនាគារលេចធ្លោ */
+.input-field:focus, .select-field:focus, .textarea-field:focus {
+    outline: none;
+    border-color: #008444;
+    background-color: rgba(6, 11, 22, 0.9);
+    box-shadow: 0 0 0 4px rgba(0, 132, 68, 0.2);
+}
+
+/* ព្រួញ Dropdown ប្តូរជាពណ៌បៃតង */
+.select-field {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23008444'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 16px;
+    padding-right: 2.5rem;
+}
+
+.textarea-field {
+    min-height: 110px;
+}
+
+/* ប៊ូតុងពណ៌បៃតងធនាគារចាំងពន្លឺ (Premium Emerald Submit Button) */
+.submit-btn {
+    width: 100%;
+    padding: 1.1rem;
+    background: linear-gradient(135deg, #00a655 0%, #008444 100%);
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 25px -5px rgba(0, 132, 68, 0.4);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.submit-btn:hover {
+    background: linear-gradient(135deg, #00bd62 0%, #00a655 100%);
+    box-shadow: 0 15px 30px -5px rgba(0, 132, 68, 0.6);
+    transform: translateY(-1px);
+}
+
+.submit-btn:active {
+    transform: scale(0.99);
+}
