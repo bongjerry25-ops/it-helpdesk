@@ -1,45 +1,69 @@
-/* កំណត់ទម្រង់អក្សរទូទៅ */
+/* បង្កើតផ្ទៃខាងក្រោយមានពន្លឺពណ៌ខៀវ និងបៃតងបែប Gradient ដើម្បីឱ្យកញ្ចក់លេចធ្លោ */
 body { 
     font-family: 'Kantumruy Pro', sans-serif; 
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f2027 100%);
+    background-image: 
+        radial-gradient(at 20% 30%, rgba(59, 130, 246, 0.15) 0, transparent 50%), 
+        radial-gradient(at 80% 80%, rgba(0, 132, 68, 0.1) 0, transparent 50%);
+    background-color: #0f172a;
+    color: white; 
+    min-height: 100vh; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    margin: 0; 
+    padding: 20px; 
 }
 
-/* ប្រអប់កណ្តាល (Card) */
+/* រចនាប្រអប់កញ្ចក់ថ្លា (Glass Effect Masterpiece) */
 .card-container { 
-    background-color: #1e293b; 
-    border-radius: 16px; 
+    background: rgba(30, 41, 59, 0.45); 
+    backdrop-filter: blur(16px); 
+    -webkit-backdrop-filter: blur(16px); 
+    border: 1px solid rgba(255, 255, 255, 0.08); 
+    border-radius: 20px; 
     padding: 35px; 
     width: 100%; 
     max-width: 750px; 
-    box-shadow: 0 15px 35px rgba(0,0,0,0.4); 
-    border: 1px solid #334155;
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.25); 
 }
 
-/* រចនារង្វង់ Logo ពណ៌ស ដូចទម្រង់ចាស់របស់បងបេះបិទ */
+/* រចនា Logo ជារង្វង់មូលធំ និងច្បាស់ជាងមុន */
 .logo-box {
-    width: 85px;
-    height: 85px;
+    width: 110px; /* បង្កើនទំហំពីរ 85px មក 110px */
+    height: 110px;
     border-radius: 50%;
-    background-color: #ffffff; /* បង្ខំឱ្យផ្ទៃខាងក្រោយពណ៌សជានិច្ច */
-    border: 2px solid #3b82f6; /* ស៊ុមពណ៌ខៀវបែប Premium */
+    background-color: rgba(255, 255, 255, 0.95); 
+    border: 2px solid rgba(255, 255, 255, 0.2); 
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
     margin: 0 auto 15px auto;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
 }
 
 .logo-box img { 
-    width: 75%; /* បង្រួមរូប Logo បន្តិចកុំឱ្យទើសគែមរង្វង់ */
+    width: 82%; /* ពង្រីករូបភាពខាងក្នុងឱ្យមើលឃើញច្បាស់ល្អ */
     height: auto;
     object-fit: contain; 
 }
 
-/* ប្រអប់វាយបញ្ចូលទិន្នន័យ (Input Fields) */
+/* អក្សរ Label ឱ្យស្រឡះភ្នែក */
+.input-label { 
+    display: block; 
+    color: #cbd5e1; 
+    font-size: 13.5px; 
+    font-weight: 500;
+    margin-bottom: 8px; 
+    text-align: left; 
+}
+
+/* ប្រអប់វាយអក្សរកញ្ចក់ */
 .input-field, .select-field, .textarea-field { 
     width: 100%; 
-    background-color: #0f172a; 
-    border: 1px solid #475569; 
+    background: rgba(15, 23, 42, 0.4); 
+    border: 1px solid rgba(255, 255, 255, 0.08); 
     border-radius: 10px; 
     padding: 12px 15px; 
     color: white; 
@@ -47,13 +71,16 @@ body {
     outline: none; 
     transition: all 0.3s ease; 
 }
+
 .input-field::placeholder, .textarea-field::placeholder {
     color: #64748b;
 }
+
+/* ពេលចុចវាយអក្សរ លោតពន្លឺខៀវ */
 .input-field:focus, .select-field:focus, .textarea-field:focus { 
-    border-color: #008444; 
-    box-shadow: 0 0 0 3px rgba(0, 132, 68, 0.2); 
-    background-color: #162032;
+    background: rgba(15, 23, 42, 0.7);
+    border-color: rgba(59, 130, 246, 0.5); 
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15); 
 }
 
 /* ចំណុចជំហាន (Step Indicators) */
@@ -68,19 +95,21 @@ body {
     font-weight: 700; 
 }
 .step-active { 
-    background-color: #008444; 
+    background: linear-gradient(135deg, #008444 0%, #006333 100%);
     color: white; 
-    box-shadow: 0 0 10px rgba(0, 132, 68, 0.4);
+    box-shadow: 0 0 15px rgba(0, 132, 68, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 .step-inactive { 
-    background-color: #334155; 
+    background: rgba(51, 65, 85, 0.5); 
     color: #94a3b8; 
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* ប៊ូតុងបញ្ជូន (Submit Button) */
+/* ប៊ូតុងបញ្ជូនបែប 3D Glass */
 .submit-btn { 
     width: 100%; 
-    background-color: #008444; 
+    background: linear-gradient(135deg, #008444 0%, #00522a 100%);
     color: white; 
     padding: 14px; 
     border-radius: 10px; 
@@ -88,18 +117,19 @@ body {
     font-size: 15px;
     letter-spacing: 0.5px;
     cursor: pointer; 
-    border: none; 
+    border: 1px solid rgba(255, 255, 255, 0.15); 
     transition: all 0.3s ease; 
-    box-shadow: 0 4px 12px rgba(0, 132, 68, 0.3);
+    box-shadow: 0 8px 20px rgba(0, 132, 68, 0.3);
 }
 .submit-btn:hover { 
-    background-color: #006333; 
-    transform: translateY(-1px);
-    box-shadow: 0 6px 15px rgba(0, 132, 68, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(0, 132, 68, 0.5);
 }
 .submit-btn:disabled {
-    background-color: #475569;
+    background: rgba(71, 85, 105, 0.5);
+    color: #94a3b8;
     cursor: not-allowed;
     box-shadow: none;
     transform: none;
+    border-color: transparent;
 }
