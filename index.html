@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IT Helpdesk Enterprise Portal</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-slate-950 min-h-screen flex items-center justify-center p-4">
@@ -14,46 +13,61 @@
     <div class="text-center mb-8">
         <div class="logo-box"><img src="12.png" alt="Logo"></div>
         <h1 class="text-2xl font-bold text-white mt-2">IT HELPDESK PORTAL</h1>
-        <p class="text-blue-400 text-sm tracking-widest uppercase">Fast • Secure • Professional</p>
+        <p class="text-blue-400 text-sm tracking-widest">FAST • SECURE • PROFESSIONAL</p>
     </div>
 
     <form id="ticketForm" class="space-y-5">
         <div class="grid grid-cols-2 gap-4">
-            <input type="text" placeholder="Staff ID" class="input-field" required>
-            <input type="text" placeholder="Full Name" class="input-field" required>
+            <input type="text" id="staff_id" placeholder="Staff ID" class="input-field" required>
+            <input type="text" id="full_name" placeholder="Full Name" class="input-field" required>
         </div>
-
         <select class="input-field w-full">
             <option>🏢 Select Branch/Department</option>
             <option>HQ - Credit & Loan</option>
             <option>Branch - Tuol Kouk</option>
         </select>
 
-        <select id="cat" class="input-field w-full">
-            <option>📂 Select Category</option>
+        <h2 class="text-slate-400 text-sm font-bold uppercase mt-4">Ticket Information</h2>
+        <select id="category" class="input-field w-full">
+            <option>📂 Category</option>
             <option value="Software">Software</option>
             <option value="Hardware">Hardware</option>
         </select>
+        <select id="issue_type" class="input-field w-full">
+            <option>⚙️ Issue Type</option>
+        </select>
 
-        <div class="p-4 bg-slate-800/50 rounded-xl border border-slate-700">
+        <div class="p-3 bg-slate-800/50 rounded-xl border border-slate-700">
             <label class="block text-slate-400 text-xs mb-2">PRIORITY</label>
             <div class="flex gap-2">
                 <label class="priority-radio"><input type="radio" name="prio" value="low"> Low</label>
                 <label class="priority-radio"><input type="radio" name="prio" value="med"> Med</label>
                 <label class="priority-radio"><input type="radio" name="prio" value="high"> High</label>
-                <label class="priority-radio"><input type="radio" name="prio" value="crit"> Critical</label>
+                <label class="priority-radio"><input type="radio" name="prio" value="crit"> Crit</label>
             </div>
         </div>
 
         <textarea placeholder="Describe your issue..." class="input-field w-full h-24" required></textarea>
-
-        <label class="upload-btn">
-            📎 Attach Screenshot / Error Log
-            <input type="file" class="hidden">
-        </label>
+        
+        <label class="upload-btn">📎 Attach Screenshot / Document</label>
 
         <button type="submit" class="submit-btn">Submit Support Ticket</button>
     </form>
+
+    <div class="mt-6 flex justify-between items-center text-xs text-slate-500 border-t border-slate-800 pt-4">
+        <span>Status: <span class="text-green-500">● Online Support Team Available</span></span>
+        <span id="ticketDisplay"></span>
+    </div>
 </div>
+
+<script>
+    // Logic: Auto Ticket ID Generator
+    document.getElementById('ticketForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const ticketId = "IT-" + new Date().getFullYear() + "-" + Math.floor(1000 + Math.random() * 9000);
+        alert("Ticket Created Successfully!\nTicket ID: " + ticketId);
+        document.getElementById('ticketDisplay').innerText = "Last Ticket: " + ticketId;
+    });
+</script>
 </body>
 </html>
