@@ -14,25 +14,25 @@ body {
     border: 1px solid #334155;
 }
 
-/* រចនារង្វង់ Logo ពណ៌ Premium ងងឹត ដូចទម្រង់ដើម */
+/* រចនារង្វង់ Logo ពណ៌ស ដូចទម្រង់ចាស់របស់បងបេះបិទ */
 .logo-box {
     width: 85px;
     height: 85px;
     border-radius: 50%;
-    margin: 0 auto 15px auto;
-    background-color: #0f172a; /* ផ្ទៃពណ៌ខៀវងងឹតស៊ីគ្នាជាមួយវេបសាយ */
-    border: 1px solid #3b82f6; /* ស៊ុមពណ៌ខៀវស្តើងបែប Premium ដូចចាស់ */
+    background-color: #ffffff; /* បង្ខំឱ្យផ្ទៃខាងក្រោយពណ៌សជានិច្ច */
+    border: 2px solid #3b82f6; /* ស៊ុមពណ៌ខៀវបែប Premium */
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    box-shadow: 0 0 15px rgba(59, 130, 246, 0.15); /* ពន្លឺខៀវជុំវិញតិចៗ */
+    margin: 0 auto 15px auto;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .logo-box img { 
-    width: 100%; 
-    height: 100%;
-    object-fit: cover; 
+    width: 75%; /* បង្រួមរូប Logo បន្តិចកុំឱ្យទើសគែមរង្វង់ */
+    height: auto;
+    object-fit: contain; 
 }
 
 /* ប្រអប់វាយបញ្ចូលទិន្នន័យ (Input Fields) */
