@@ -50,6 +50,28 @@
         <div class="flex flex-col"><label class="input-label">កម្រិតអាទិភាព</label><select id="sla_priority" required class="select-field"><option value="High">ខ្ពស់ (High)</option><option value="Medium">មធ្យម (Medium)</option><option value="Low">ទាប (Low)</option></select></div>
         <div class="flex flex-col"><label class="input-label">ការពិពណ៌នាបន្ថែម</label><textarea id="description" required class="textarea-field" rows="3"></textarea></div>
 
+        <div class="flex flex-col mt-4">
+    <label class="input-label mb-2">ឯកសារភ្ជាប់ (Attach Screenshot / Log)</label>
+    <div class="relative">
+        <input type="file" id="file_attachment" class="hidden" onchange="updateFileName(this)">
+        <label for="file_attachment" class="upload-btn cursor-pointer flex items-center justify-center gap-2 border-2 border-dashed border-slate-600 dark:border-slate-500 rounded-xl py-3 text-sm text-slate-400 hover:border-blue-500 transition-all">
+            <span id="fileNameDisplay">📎 ចុចដើម្បីជ្រើសរើសឯកសារ</span>
+        </label>
+    </div>
+</div>
+
+<script>
+    // មុខងារបង្ហាញឈ្មោះឯកសារពេល Upload ជាប់
+    function updateFileName(input) {
+        const display = document.getElementById('fileNameDisplay');
+        if (input.files.length > 0) {
+            display.innerText = "✅ " + input.files[0].name;
+        } else {
+            display.innerText = "📎 ចុចដើម្បីជ្រើសរើសឯកសារ";
+        }
+    }
+</script>
+
         <button type="submit" id="submitBtn" class="submit-btn">បញ្ជូនសំណើរ (Submit Ticket)</button>
     </form>
 </div>

@@ -82,3 +82,7 @@ body {
     transition: all 0.3s ease; 
 }
 .submit-btn:hover { background-color: #006333; }
+
+/* កូដសម្រាប់ប៊ូតុង Upload */
+.cursor-pointer { cursor: pointer; }
+#file_attachment { display: none; }
