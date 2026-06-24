@@ -7,76 +7,71 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <script>
-        // Tailwind Dark Mode Config
-        tailwind.config = { darkMode: 'class' }
-    </script>
+    <script>tailwind.config = { darkMode: 'class' }</script>
 </head>
-<body class="bg-[#f5f7fa] dark:bg-[#0f172a] transition-colors duration-300 flex items-center justify-center min-h-screen p-4 sm:p-6">
+<body class="bg-[#0f172a] transition-colors duration-300 flex items-center justify-center min-h-screen p-4 sm:p-6">
 
-<div class="card-container w-full max-w-2xl bg-white dark:bg-[#1e293b] p-8 rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-700">
-    
-    <!-- Theme Toggle Button -->
-    <div class="flex justify-end mb-4">
-        <button id="themeToggle" class="px-4 py-2 bg-slate-200 dark:bg-slate-700 rounded-full text-xs font-bold text-slate-600 dark:text-slate-300 hover:scale-105 transition-transform">
+<div class="card-container">
+    <!-- Theme Toggle -->
+    <div class="flex justify-end mb-2">
+        <button id="themeToggle" class="px-3 py-1 bg-slate-700 text-white text-xs rounded-lg hover:bg-slate-600 transition">
             🌓 ប្តូរពណ៌ (Theme)
         </button>
     </div>
 
     <div class="flex flex-col items-center text-center mb-8">
-        <div class="logo-box bg-white p-2 rounded-full shadow-lg">
-            <img src="12.png" alt="IT Support Logo" class="w-16 h-16">
+        <div class="logo-box">
+            <img src="12.png" alt="IT Support Logo">
         </div>
-        <h2 class="text-2xl font-bold text-slate-800 dark:text-white tracking-wide mt-3">IT HELPDESK SERVICE</h2>
+        <h2 class="text-2xl font-bold text-white tracking-wide mt-3">IT HELPDESK SERVICE</h2>
         <p class="text-xs uppercase tracking-widest text-[#008444] font-semibold mt-1">E-Ticket Secure Portal</p>
     </div>
 
+    <!-- Steps -->
+    <div class="flex items-center justify-center max-w-xs mx-auto mb-8 text-xs text-slate-400">
+        <div class="flex items-center"><div class="step-dot step-active">1</div><span class="ml-2 font-medium text-white">បំពេញទម្រង់</span></div>
+        <div class="w-12 h-[1px] bg-slate-700 mx-3"></div>
+        <div class="flex items-center"><div class="step-dot step-inactive">2</div><span class="ml-2 font-medium">IT ដោះស្រាយ</span></div>
+    </div>
+
     <form id="ticketForm" class="space-y-5">
-        <!-- Fields (រក្សាទុក Form ដើមរបស់បង) -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            <input type="text" id="staff_id" placeholder="Staff ID" required class="input-field">
-            <input type="text" id="name" placeholder="Full Name" required class="input-field">
-        </div>
-        
-        <select id="department" required class="select-field">
-            <option value="">-- សូមជ្រើសរើសសាខា --</option>
-            <option value="HQ - Credit & Loan">ការិយាល័យកណ្តាល - ផ្នែកឥណទាន</option>
-            <option value="Branch - Tuol Kouk">សាខា - ទួលគោក</option>
-        </select>
-
-        <select id="issue_type" required class="select-field">
-            <option value="">-- សូមជ្រើសរើសប្រភេទបញ្ហា --</option>
-            <option value="Software">បញ្ហាកម្មវិធី (Software)</option>
-            <option value="Hardware">បញ្ហាគ្រឿងម៉ាស៊ីន (Hardware)</option>
-        </select>
-
-        <div id="sub_category_area" class="hidden">
-            <select id="sub_issue" class="select-field"></select>
+            <div class="flex flex-col"><label class="input-label">អត្តសញ្ញាណប័ណ្ណបុគ្គលិក</label><input type="text" id="staff_id" required class="input-field"></div>
+            <div class="flex flex-col"><label class="input-label">ឈ្មោះពេញ</label><input type="text" id="name" required class="input-field"></div>
         </div>
 
-        <button type="submit" id="submitBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl transition-all">
-            បញ្ជូនសំណើរ (Submit Ticket)
-        </button>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div class="flex flex-col"><label class="input-label">ផ្នែក / សាខា</label><select id="department" required class="select-field"><option value="">-- សូមជ្រើសរើសសាខា --</option><option value="HQ - Credit & Loan">ការិយាល័យកណ្តាល</option><option value="Branch - Tuol Kouk">សាខា - ទួលគោក</option></select></div>
+            <div class="flex flex-col"><label class="input-label">លេខទូរស័ព្ទ</label><input type="tel" id="phone" required class="input-field"></div>
+        </div>
+
+        <div class="flex flex-col"><label class="input-label">ប្រភេទបញ្ហា</label><select id="issue_type" required class="select-field"><option value="">-- សូមជ្រើសរើស --</option><option value="Software">Software</option><option value="Hardware">Hardware</option></select></div>
+        <div id="sub_category_area" class="flex flex-col hidden"><label class="input-label">ពិពណ៌នាបញ្ហាច្បាស់លាស់</label><select id="sub_issue" class="select-field"></select></div>
+        <div class="flex flex-col"><label class="input-label">កម្រិតអាទិភាព</label><select id="sla_priority" required class="select-field"><option value="High">ខ្ពស់ (High)</option><option value="Medium">មធ្យម (Medium)</option><option value="Low">ទាប (Low)</option></select></div>
+        <div class="flex flex-col"><label class="input-label">ការពិពណ៌នាបន្ថែម</label><textarea id="description" required class="textarea-field" rows="3"></textarea></div>
+
+        <button type="submit" id="submitBtn" class="submit-btn">បញ្ជូនសំណើរ (Submit Ticket)</button>
     </form>
 </div>
 
 <script>
-    // Theme Toggle Logic
-    const themeToggle = document.getElementById('themeToggle');
-    themeToggle.addEventListener('click', () => {
+    // Theme Switch Logic
+    document.getElementById('themeToggle').addEventListener('click', () => {
         document.documentElement.classList.toggle('dark');
-        localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
     });
 
-    // Load saved theme
-    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        document.documentElement.classList.add('dark');
-    } else {
-        document.documentElement.classList.remove('dark');
-    }
+    // រក្សាទុក Logic ដើមរបស់បងទាំងអស់នៅទីនេះ...
+    const issueTypeSelect = document.getElementById("issue_type");
+    const subCategoryArea = document.getElementById("sub_category_area");
+    const subIssueSelect = document.getElementById("sub_issue");
+    const subCategories = { "Software": ["Email", "Core Banking", "Windows"], "Hardware": ["PC", "Printer", "Network"] };
 
-    // Logic បងដដែល (រក្សាទុកឱ្យនៅដដែល)
-    // ... (កូដ Telegram Fetch របស់បងនៅទីនេះ) ...
+    issueTypeSelect.addEventListener("change", function() {
+        if (this.value && subCategories[this.value]) {
+            subCategoryArea.classList.remove("hidden");
+            subIssueSelect.innerHTML = subCategories[this.value].map(i => `<option value="${i}">${i}</option>`).join('');
+        } else { subCategoryArea.classList.add("hidden"); }
+    });
 </script>
 </body>
 </html>
