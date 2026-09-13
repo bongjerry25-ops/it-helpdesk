@@ -10,10 +10,6 @@ export default async function handler(req, res) {
     const botToken = process.env.TELEGRAM_BOT_TOKEN;
     const chatId = process.env.TELEGRAM_CHAT_ID;
 
-    if (!botToken || !chatId) {
-      return res.status(400).json({ success: false, description: "Missing Token or Chat ID in Vercel" });
-    }
-
     let priorityIcon = slaPriority === "High" ? "🔴" : (slaPriority === "Medium" ? "🟡" : "⚫");
 
     const telegramText = 
