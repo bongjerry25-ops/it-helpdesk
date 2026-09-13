@@ -95,5 +95,58 @@
         } else { subCategoryArea.classList.add("hidden"); }
     });
 </script>
+<script>
+    // Form Submit Logic connected to Vercel API (Secure)
+    document.getElementById('ticketForm').addEventListener('submit', function(event) {
+        event.preventDefault(); 
+        const submitBtn = document.getElementById('submitBtn');
+        const originalBtnText = submitBtn.innerText;
+        submitBtn.innerText = "កំពុងបញ្ជូន... ⏳";
+        submitBtn.disabled = true;
+
+        const staffId = document.getElementById("staff_id").value;
+        const name = document.getElementById("name").value;
+        const department = document.getElementById("department").value;
+        const phone = document.getElementById("phone").value;
+        const issueType = document.getElementById("issue_type").value;
+        const subIssue = document.getElementById("sub_issue").value || "មិនមាន";
+        const slaPriority = document.getElementById("sla_priority").value;
+        const description = document.getElementById("description").value;
+
+        fetch('/api/send-ticket', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                staff_id: staffId,
+                name: name,
+                department: department,
+                phone: phone,
+                issue_type: issueType,
+                sub_issue: subIssue,
+                sla_priority: slaPriority,
+                description: description
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data.success) {
+                alert("✅ សំបុត្រ (Ticket) ត្រូវបានបញ្ជូនទៅកាន់ IT ដោយជោគជ័យ!");
+                document.getElementById('ticketForm').reset();
+                subCategoryArea.classList.add("hidden");
+                document.getElementById('fileNameDisplay').innerText = "📎 ចុចដើម្បីជ្រើសរើសឯកសារ";
+            } else {
+                alert("❌ មានបញ្ហា: " + (data.description || "Unknown error"));
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert("❌ មានបញ្ហាប្រព័ន្ធ Network មិនអាចទាក់ទងបានទេ។");
+        })
+        .finally(() => {
+            submitBtn.innerText = originalBtnText;
+            submitBtn.disabled = false;
+        });
+    });
+</script>
 </body>
 </html>
