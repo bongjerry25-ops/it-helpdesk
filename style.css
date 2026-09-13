@@ -1,105 +1,88 @@
-/* កំណត់ទម្រង់អក្សរទូទៅ */
+/* កំណត់ពណ៌មូលដ្ឋាន (Variables) */
+:root {
+    --bg-color: #f5f7fa;
+    --card-bg: #ffffff;
+    --text-color: #111827;
+    --input-bg: #f8fafc;
+    --input-border: #e2e8f0;
+    --accent-color: #008444;
+}
+
+.dark {
+    --bg-color: #0f172a;
+    --card-bg: #1e293b;
+    --text-color: #f8fafc;
+    --input-bg: #0f172a;
+    --input-border: #475569;
+}
+
 body { 
-    font-family: 'Kantumruy Pro', sans-serif; 
+    font-family: 'Kantumruy Pro', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
 }
 
 /* ប្រអប់កណ្តាល (Card) */
 .card-container { 
-    background-color: #1e293b; 
+    background-color: var(--card-bg); 
     border-radius: 16px; 
     padding: 35px; 
     width: 100%; 
     max-width: 750px; 
-    box-shadow: 0 15px 35px rgba(0,0,0,0.4); 
-    border: 1px solid #334155;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2); 
+    border: 1px solid var(--input-border);
+    transition: background-color 0.3s;
 }
 
-/* រចនារង្វង់ Logo ពណ៌ស ដូចទម្រង់ចាស់របស់បងបេះបិទ */
+/* រចនារង្វង់ Logo */
 .logo-box {
-    width: 85px;
-    height: 85px;
-    border-radius: 50%;
-    background-color: #ffffff; /* បង្ខំឱ្យផ្ទៃខាងក្រោយពណ៌សជានិច្ច */
-    border: 2px solid #3b82f6; /* ស៊ុមពណ៌ខៀវបែប Premium */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    margin: 0 auto 15px auto;
+    width: 85px; height: 85px; border-radius: 50%;
+    background-color: #ffffff; 
+    border: 2px solid var(--accent-color);
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden; margin: 0 auto 15px auto;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
+.logo-box img { width: 75%; height: auto; object-fit: contain; }
 
-.logo-box img { 
-    width: 75%; /* បង្រួមរូប Logo បន្តិចកុំឱ្យទើសគែមរង្វង់ */
-    height: auto;
-    object-fit: contain; 
-}
-
-/* ប្រអប់វាយបញ្ចូលទិន្នន័យ (Input Fields) */
+/* Input Fields */
 .input-field, .select-field, .textarea-field { 
     width: 100%; 
-    background-color: #0f172a; 
-    border: 1px solid #475569; 
+    background-color: var(--input-bg); 
+    border: 1px solid var(--input-border); 
     border-radius: 10px; 
     padding: 12px 15px; 
-    color: white; 
+    color: var(--text-color); 
     font-size: 14px;
     outline: none; 
     transition: all 0.3s ease; 
 }
-.input-field::placeholder, .textarea-field::placeholder {
-    color: #64748b;
-}
-.input-field:focus, .select-field:focus, .textarea-field:focus { 
-    border-color: #008444; 
-    box-shadow: 0 0 0 3px rgba(0, 132, 68, 0.2); 
-    background-color: #162032;
-}
+.input-field:focus { border-color: var(--accent-color); }
 
-/* ចំណុចជំហាន (Step Indicators) */
+/* Step Indicators */
 .step-dot { 
-    width: 26px; 
-    height: 26px; 
-    border-radius: 50%; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    font-size: 12px; 
-    font-weight: 700; 
+    width: 26px; height: 26px; border-radius: 50%; 
+    display: flex; align-items: center; justify-content: center; 
+    font-size: 12px; font-weight: 700; 
 }
-.step-active { 
-    background-color: #008444; 
-    color: white; 
-    box-shadow: 0 0 10px rgba(0, 132, 68, 0.4);
-}
-.step-inactive { 
-    background-color: #334155; 
-    color: #94a3b8; 
-}
+.step-active { background-color: var(--accent-color); color: white; }
+.step-inactive { background-color: #334155; color: #94a3b8; }
 
-/* ប៊ូតុងបញ្ជូន (Submit Button) */
+/* ប៊ូតុងបញ្ជូន */
 .submit-btn { 
     width: 100%; 
-    background-color: #008444; 
+    background-color: var(--accent-color); 
     color: white; 
     padding: 14px; 
     border-radius: 10px; 
     font-weight: 600; 
-    font-size: 15px;
-    letter-spacing: 0.5px;
     cursor: pointer; 
     border: none; 
     transition: all 0.3s ease; 
-    box-shadow: 0 4px 12px rgba(0, 132, 68, 0.3);
 }
-.submit-btn:hover { 
-    background-color: #006333; 
-    transform: translateY(-1px);
-    box-shadow: 0 6px 15px rgba(0, 132, 68, 0.4);
-}
-.submit-btn:disabled {
-    background-color: #475569;
-    cursor: not-allowed;
-    box-shadow: none;
-    transform: none;
-}
+.submit-btn:hover { background-color: #006333; }
+
+/* កូដសម្រាប់ប៊ូតុង Upload */
+.cursor-pointer { cursor: pointer; }
+#file_attachment { display: none; }
