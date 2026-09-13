@@ -4,16 +4,14 @@ export default async function handler(req, res) {
   }
 
   try {
-    // ធានាថា req.body ត្រូវបាន Parse ត្រឹមត្រូវ
     const body = typeof req.body === 'string' ? JSON.parse(req.body) : (req.body || {});
     const { staff_id, name, department, phone, issue_type, sub_issue, sla_priority, description } = body;
     
-    // Support ទាំងឈ្មោះអក្សរធំ និងឈ្មោះចាស់
-    const botToken = process.env.TELEGRAM_BOT_TOKEN || process.env.Telegram_Token;
-    const chatId = process.env.TELEGRAM_CHAT_ID || process.env.Chat_ID;
+    const botToken = process.env.TELEGRAM_BOT_TOKEN;
+    const chatId = process.env.TELEGRAM_CHAT_ID;
 
     if (!botToken || !chatId) {
-      return res.status(400).json({ success: false, description: "Missing Token or Chat ID in Vercel Environment Variables" });
+      return res.status(400).json({ success: false, description: "Missing Token or Chat ID in Vercel" });
     }
 
     let priorityIcon = slaPriority === "High" ? "🔴" : (slaPriority === "Medium" ? "🟡" : "⚫");
