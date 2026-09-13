@@ -3,24 +3,30 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { staff_id, name, department, phone, issue_type, sub_issue, sla_priority, description } = req.body;
-  
-  // Vercel จะดึง Token จาก Environment Variables ที่បងเพิ่งដាក់មិញនេះដោយស្វ័យប្រវត្តិ
-  const botToken = process.env.TELEGRAM_BOT_TOKEN;
-  const chatId = process.env.TELEGRAM_CHAT_ID;
-
-  let priorityIcon = slaPriority === "High" ? "🔴" : (slaPriority === "Medium" ? "🟡" : "⚫");
-
-  const telegramText = 
-    `<b>Name:</b> ${name}  |  <b>ID:</b> ${staff_id}\n` +
-    `<b>Contact:</b> ${phone}  |  <b>Dept:</b> ${department}\n` +
-    `🛠 <b>ISSUE DETAILS</b>\n` +
-    `<b>Category:</b> ${issue_type} (${sub_issue})\n` +
-    `<b>Priority:</b> ${priorityIcon} ${slaPriority}\n` +
-    `<b>Description:</b>\n` +
-    `<i>${description}</i>`;
-
   try {
+    // ធានាថា req.body ត្រូវបាន Parse ត្រឹមត្រូវ
+    const body = typeof req.body === 'string' ? JSON.parse(req.body) : (req.body || {});
+    const { staff_id, name, department, phone, issue_type, sub_issue, sla_priority, description } = body;
+    
+    // Support ទាំងឈ្មោះអក្សរធំ និងឈ្មោះចាស់
+    const botToken = process.env.TELEGRAM_BOT_TOKEN || process.env.Telegram_Token;
+    const chatId = process.env.TELEGRAM_CHAT_ID || process.env.Chat_ID;
+
+    if (!botToken || !chatId) {
+      return res.status(400).json({ success: false, description: "Missing Token or Chat ID in Vercel Environment Variables" });
+    }
+
+    let priorityIcon = slaPriority === "High" ? "🔴" : (slaPriority === "Medium" ? "🟡" : "⚫");
+
+    const telegramText = 
+      `<b>Name:</b> ${name || 'N/A'}  |  <b>ID:</b> ${staff_id || 'N/A'}\n` +
+      `<b>Contact:</b> ${phone || 'N/A'}  |  <b>Dept:</b> ${department || 'N/A'}\n` +
+      `🛠 <b>ISSUE DETAILS</b>\n` +
+      `<b>Category:</b> ${issue_type || 'N/A'} (${sub_issue || 'មិនមាន'})\n` +
+      `<b>Priority:</b> ${priorityIcon} ${slaPriority || 'N/A'}\n` +
+      `<b>Description:</b>\n` +
+      `<i>${description || 'N/A'}</i>`;
+
     const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -28,10 +34,11 @@ export default async function handler(req, res) {
     });
 
     const data = await response.json();
+    
     if (data.ok) {
       return res.status(200).json({ success: true });
     } else {
-      return res.status(400).json({ success: false, description: data.description });
+      return res.status(400).json({ success: false, description: data.description || "Telegram API Error" });
     }
   } catch (error) {
     return res.status(500).json({ success: false, error: error.message });
